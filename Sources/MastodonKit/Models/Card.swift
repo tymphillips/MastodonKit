@@ -21,18 +21,32 @@ public class Card: Codable {
 	public let type: Type?
 	/// The name of the card content's author.
 	public let authorName: String?
-	/// The URL for the card content's author.
-	public let authorUrl: URL?
+	/// The URL for the card content's author in string format.
+	private let authorUrlString: String?
 	/// The name of the card content's provider.
 	public let providerName: String?
-	/// The URL for the card content's provider.
-	public let providerUrl: URL?
+	/// The URL for the card content's provider in string format.
+	private let providerUrlString: String?
 	/// The card contents in HTML.
 	public let html: String?
 	/// The card's content width.
 	public let width: Int?
 	/// The card's content height.
 	public let height: Int?
+
+	/// The URL for the card content's author.
+	public var authorUrl: URL?
+	{
+		guard let url = authorUrlString else { return nil }
+		return URL(string: url)
+	}
+
+	/// The URL for the card content's provider.
+	public var providerUrl: URL?
+	{
+		guard let url = providerUrlString else { return nil }
+		return URL(string: url)
+	}
 
 	private enum CodingKeys: String, CodingKey {
 		case url
@@ -41,9 +55,9 @@ public class Card: Codable {
 		case imageUrl = "image"
 		case type
 		case authorName = "author_name"
-		case authorUrl = "author_url"
+		case authorUrlString = "author_url"
 		case providerName = "provider_name"
-		case providerUrl = "provider_url"
+		case providerUrlString = "provider_url"
 		case html
 		case width
 		case height
