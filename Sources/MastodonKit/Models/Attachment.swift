@@ -57,10 +57,10 @@ public class Attachment: Codable {
 
 		public struct Focus: Codable {
 			/// The X coordinate of the focus point.
-			public let x: Int
+			public let x: Float
 
 			/// The Y coordinate of the focus point.
-			public let y: Int
+			public let y: Float
 		}
 	}
 }
