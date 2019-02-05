@@ -23,6 +23,8 @@ public class Attachment: Codable {
     public let textURL: String?
     /// A description of the image for the visually impaired.
     public let description: String?
+	/// Metadata about the attachment. Not always available.
+	public let meta: MetaCollection?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -32,5 +34,33 @@ public class Attachment: Codable {
         case previewURL = "preview_url"
         case textURL = "text_url"
         case description
+		case meta
     }
+
+	public struct MetaCollection: Codable {
+		/// Metadata about the original resource
+		public let original: Meta?
+
+		/// Metadata about the small resource thumbnail
+		public let small: Meta?
+
+		/// The focus point of the original resource. Can be used for smart cropping.
+		public let focus: Focus?
+
+		public struct Meta: Codable {
+			/// The width of the image or video attachment
+			let width: Int
+
+			/// The height of the image or video attachment
+			let height: Int
+		}
+
+		public struct Focus: Codable {
+			/// The X coordinate of the focus point.
+			public let x: Int
+
+			/// The Y coordinate of the focus point.
+			public let y: Int
+		}
+	}
 }
