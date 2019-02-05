@@ -50,12 +50,17 @@ public struct Client: ClientType {
                     return
             }
 
-            guard let model = try? Model.decode(data: data) else {
-                completion(.failure(ClientError.invalidModel))
-                return
+            do
+            {
+                completion(.success(try Model.decode(data: data), httpResponse.pagination))
             }
-
-            completion(.success(model, httpResponse.pagination))
+            catch let parseError
+            {
+                #if DEBUG
+                NSLog("Parse error: \(parseError)")
+                #endif
+                completion(.failure(ClientError.invalidModel))
+            }
         }
 
         task.resume()
