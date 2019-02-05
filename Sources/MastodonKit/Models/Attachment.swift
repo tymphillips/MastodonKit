@@ -49,10 +49,10 @@ public class Attachment: Codable {
 
 		public struct Meta: Codable {
 			/// The width of the image or video attachment
-			let width: Int
+			public let width: Int
 
 			/// The height of the image or video attachment
-			let height: Int
+			public let height: Int
 		}
 
 		public struct Focus: Codable {
