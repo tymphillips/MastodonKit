@@ -19,13 +19,17 @@ public struct Client: ClientType {
         self.accessToken = accessToken
     }
 
-    public func run<Model>(_ request: Request<Model>, completion: @escaping (Result<Model>) -> Void) {
+    @discardableResult
+    public func run<Model>(_ request: Request<Model>,
+                           resumeImmediatelly: Bool,
+                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model : Decodable, Model : Encodable
+    {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
             else {
                 completion(.failure(ClientError.malformedURL))
-                return
+                return nil
         }
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
@@ -63,6 +67,10 @@ public struct Client: ClientType {
             }
         }
 
-        task.resume()
+        if resumeImmediatelly {
+            task.resume()
+        }
+
+        return task
     }
 }

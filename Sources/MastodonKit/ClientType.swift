@@ -24,7 +24,26 @@ public protocol ClientType {
     ///
     /// - Parameters:
     ///   - request: The request to be performed.
+	///   - resumeImmediatelly: Whether the `URLSessionDataTask` should be resumed before returning.
     ///   - completion: The completion block to be called when the request is complete.
     ///   - result: The request result.
-    func run<Model>(_ request: Request<Model>, completion: @escaping (_ result: Result<Model>) -> Void)
+	/// - Returns: `URLSessionDataTask` that will execute the request.
+	@discardableResult
+	func run<Model>(_ request: Request<Model>,
+					resumeImmediatelly: Bool,
+					completion: @escaping (_ result: Result<Model>) -> Void) -> URLSessionDataTask?
+}
+
+public extension ClientType {
+
+	/// Performs the network request.
+	///
+	/// - Parameters:
+	///   - request: The request to be performed.
+	///   - completion: The completion block to be called when the request is complete.
+	///   - result: The request result.
+	func run<Model>(_ request: Request<Model>, completion: @escaping (_ result: Result<Model>) -> Void)
+	{
+		run(request, resumeImmediatelly: true, completion: completion)
+	}
 }
