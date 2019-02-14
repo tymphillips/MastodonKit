@@ -18,4 +18,19 @@ public enum Media {
         let method = HTTPMethod.post(.media(mediaAttachment))
         return Request<Attachment>(path: "/api/v1/media", method: method, timeout: 60 * 10)
     }
+
+    /// Update a media attachment. Can only be done before the media is attached to a status.
+    ///
+    /// - Parameters:
+    ///   - id: The media attachment id to update.
+    ///   - description: A plain-text description of the media for accessibility (max 420 chars)
+    /// - Returns: Request for `Attachment`.
+    public static func update(id: String, description: String? = nil) -> Request<Attachment> {
+        let parameters = [
+            Parameter(name: "description", value: description)
+        ]
+
+        let method = HTTPMethod.put(.parameters(parameters))
+        return Request<Attachment>(path: "/api/v1/media/\(id)", method: method)
+    }
 }
