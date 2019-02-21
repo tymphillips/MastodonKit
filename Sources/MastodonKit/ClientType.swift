@@ -11,6 +11,8 @@ import Foundation
 public protocol ClientType {
     /// The user access token used to perform the network requests.
     var accessToken: String? { get set }
+	/// The base URL for this client.
+	var baseURL: String { get }
 
     /// Mastodon Client's initializer.
     ///

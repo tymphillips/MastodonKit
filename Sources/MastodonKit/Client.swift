@@ -9,9 +9,10 @@
 import Foundation
 
 public struct Client: ClientType {
-    let baseURL: String
-    let session: URLSession
+    public let baseURL: String
     public var accessToken: String?
+
+    let session: URLSession
 
     public init(baseURL: String, accessToken: String? = nil, session: URLSession = .shared) {
         self.baseURL = baseURL
