@@ -39,6 +39,12 @@ public class Account: Codable {
     public let followingCount: Int
     /// The number of statuses the account has made.
     public let statusesCount: Int
+    /// Reference to the account this user has moved to, if any.
+    public let moved: Account?
+    /// Metadata fields in the user's profile, if any.
+    public let fields: [VerifiableMetadataField]?
+    /// Whether this account is a bot.
+    public let bot: Bool?
 
     /// An array of `Emoji`.
     public var emojis: [Emoji] {
@@ -69,5 +75,8 @@ public class Account: Codable {
         case followingCount = "following_count"
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
+        case moved
+        case fields
+        case bot
     }
 }
