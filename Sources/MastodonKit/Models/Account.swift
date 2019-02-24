@@ -45,6 +45,8 @@ public class Account: Codable {
     public let fields: [VerifiableMetadataField]?
     /// Whether this account is a bot.
     public let bot: Bool?
+    /// Unformatted versions of some of the account fields.
+    public let source: Source?
 
     /// An array of `Emoji`.
     public var emojis: [Emoji] {
@@ -78,5 +80,14 @@ public class Account: Codable {
         case moved
         case fields
         case bot
+        case source
+    }
+
+    public struct Source: Codable
+    {
+        /// Unformatted biography of user.
+        public let note: String?
+        /// Unformatted metadata fields in the user's profile, if any.
+        public let fields: [VerifiableMetadataField]?
     }
 }
