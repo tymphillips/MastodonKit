@@ -14,6 +14,20 @@ func toString(scope: AccessScope) -> String {
     return scope.rawValue
 }
 
+func toDictionaryOfParameters<D: StringDictionaryConvertible>(withName name: String) -> ([D]) -> [Parameter] {
+	return { array in
+		var parameters = [Parameter]()
+
+		for (index, element) in array.enumerated() {
+			for (key, value) in element.dictionaryValue {
+				parameters.append(Parameter(name: "\(name)[\(index)][\(key)]", value: value))
+			}
+		}
+
+		return parameters
+	}
+}
+
 func toArrayOfParameters<A>(withName name: String) -> (A) -> Parameter {
     return { value in Parameter(name: "\(name)[]", value: String(describing: value)) }
 }
@@ -57,4 +71,9 @@ func toInteger(item: URLQueryItem) -> Int? {
 
 func toAccessScope(string: String) -> AccessScope? {
     return AccessScope(rawValue: string)
+}
+
+protocol StringDictionaryConvertible
+{
+	var dictionaryValue: [String: String] { get }
 }

@@ -36,13 +36,16 @@ public enum Accounts {
     public static func updateCurrentUser(displayName: String? = nil,
                                          note: String? = nil,
                                          avatar: MediaAttachment? = nil,
-                                         header: MediaAttachment? = nil) -> Request<Account> {
+                                         header: MediaAttachment? = nil,
+                                         locked: Bool?,
+                                         fieldsAttributes: [MetadataField]?) -> Request<Account> {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
-            Parameter(name: "note", value: note),
+            Parameter(name: "note", value: note?.applyingCarriageReturns),
             Parameter(name: "avatar", value: avatar?.base64EncondedString),
-            Parameter(name: "header", value: header?.base64EncondedString)
-        ]
+            Parameter(name: "header", value: header?.base64EncondedString),
+            Parameter(name: "locked", value: locked.flatMap(trueOrNil))
+            ] + (fieldsAttributes.flatMap(toDictionaryOfParameters(withName: "fields_attributes")) ?? [])
 
         let method = HTTPMethod.patch(.parameters(parameters))
         return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method)
