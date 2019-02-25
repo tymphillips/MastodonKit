@@ -38,13 +38,15 @@ public enum Accounts {
                                          avatar: MediaAttachment? = nil,
                                          header: MediaAttachment? = nil,
                                          locked: Bool?,
+                                         bot: Bool?,
                                          fieldsAttributes: [MetadataField]?) -> Request<Account> {
         let parameters = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note?.applyingCarriageReturns),
             Parameter(name: "avatar", value: avatar?.base64EncondedString),
             Parameter(name: "header", value: header?.base64EncondedString),
-            Parameter(name: "locked", value: locked.flatMap(trueOrNil))
+            Parameter(name: "locked", value: locked.flatMap(trueOrNil)),
+            Parameter(name: "bot", value: bot.flatMap(trueOrNil)),
             ] + (fieldsAttributes.flatMap(toDictionaryOfParameters(withName: "fields_attributes")) ?? [])
 
         let method = HTTPMethod.patch(.parameters(parameters))
