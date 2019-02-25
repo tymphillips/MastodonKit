@@ -32,6 +32,9 @@ public enum Accounts {
     ///   - note: A new biography for the user.
     ///   - avatar: The media attachment to display as the user's avatar.
     ///   - header: The media attachment to display as the user's header image.
+    ///   - locked: Whether the accound should be locked, and require follow requests to be approved.
+    ///   - bot: Whether the account mostly performs automated actions, and might not be monitored.
+    ///   - fieldsAttributes: List of profile metadata attributes to be displayed in the account's profile.
     /// - Returns: Request for `Account`.
     public static func updateCurrentUser(displayName: String? = nil,
                                          note: String? = nil,
