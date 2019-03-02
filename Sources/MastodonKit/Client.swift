@@ -23,14 +23,14 @@ public struct Client: ClientType {
     @discardableResult
     public func run<Model>(_ request: Request<Model>,
                            resumeImmediatelly: Bool,
-                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model : Decodable, Model : Encodable
+                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model : Codable
     {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
-            else {
-                completion(.failure(ClientError.malformedURL))
-                return nil
+        else {
+            completion(.failure(ClientError.malformedURL))
+            return nil
         }
 
         var urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
@@ -53,19 +53,17 @@ public struct Client: ClientType {
             guard
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
-                else {
-                    let mastodonError = try? MastodonError.decode(data: data)
-                    let error: ClientError = mastodonError.map { .mastodonError($0.description) } ?? .genericError
-                    completion(.failure(error))
-                    return
+            else {
+                let mastodonError = try? MastodonError.decode(data: data)
+                let error: ClientError = mastodonError.map { .mastodonError($0.description) }
+                                        ?? .genericError(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1)
+                completion(.failure(error))
+                return
             }
 
-            do
-            {
+            do {
                 completion(.success(try Model.decode(data: data), httpResponse.pagination))
-            }
-            catch let parseError
-            {
+            } catch let parseError {
                 #if DEBUG
                 NSLog("Parse error: \(parseError)")
                 #endif
