@@ -40,19 +40,19 @@ public enum Accounts {
                                          note: String? = nil,
                                          avatar: MediaAttachment? = nil,
                                          header: MediaAttachment? = nil,
-                                         locked: Bool?,
-                                         bot: Bool?,
-                                         fieldsAttributes: [MetadataField]?) -> Request<Account> {
-        let parameters = [
+                                         locked: Bool? = nil,
+                                         bot: Bool? = nil,
+                                         fieldsAttributes: [MetadataField]? = nil) -> Request<Account> {
+        let parameters: [FormParameter] = [
             Parameter(name: "display_name", value: displayName),
             Parameter(name: "note", value: note?.applyingCarriageReturns),
-            Parameter(name: "avatar", value: avatar?.base64EncondedString),
-            Parameter(name: "header", value: header?.base64EncondedString),
+            FormMediaAttachment(name: "avatar", mediaAttachment: avatar),
+            FormMediaAttachment(name: "header", mediaAttachment: header),
             Parameter(name: "locked", value: locked.flatMap(trueOrNil)),
             Parameter(name: "bot", value: bot.flatMap(trueOrNil)),
-            ] + (fieldsAttributes.flatMap(toDictionaryOfParameters(withName: "fields_attributes")) ?? [])
+        ] + (fieldsAttributes.flatMap(toDictionaryOfParameters(withName: "fields_attributes")) as [FormParameter]? ?? [])
 
-        let method = HTTPMethod.patch(.parameters(parameters))
+        let method = HTTPMethod.patch(.form(parameters))
         return Request<Account>(path: "/api/v1/accounts/update_credentials", method: method)
     }
 
