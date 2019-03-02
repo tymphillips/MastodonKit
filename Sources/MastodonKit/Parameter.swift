@@ -16,3 +16,19 @@ struct Parameter {
 // MARK: - Equatable
 
 extension Parameter: Equatable {}
+
+// MARK: - Form Parameter
+
+extension Parameter: FormParameter {
+
+	var formItemValue: Data? {
+		guard let value = self.value else { return nil }
+		return """
+--\(Payload.formBoundary)
+Content-Disposition: form-data; name="\(name)"
+
+\(value)
+
+""".applyingCarriageReturns.data(using: .utf8)
+	}
+}

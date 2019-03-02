@@ -51,3 +51,39 @@ extension MediaAttachment {
         return data.map { "data:" + mimeType + ";base64," + $0.base64EncodedString() }
     }
 }
+
+// MARK: - Form Parameter
+
+struct FormMediaAttachment {
+	var name: String
+	var mediaAttachment: MediaAttachment?
+}
+
+extension FormMediaAttachment: FormParameter {
+
+	var formItemValue: Data? {
+		guard
+			let data = mediaAttachment?.data,
+			let mime = mediaAttachment?.mimeType,
+			let filename = mediaAttachment?.fileName
+		else { return nil }
+
+		let prefix = """
+--\(Payload.formBoundary)
+Content-Disposition: form-data; name="\(name)"; filename="\(filename)"
+Content-Type: \(mime)
+
+
+""".applyingCarriageReturns
+		let suffix = "\r\n"
+
+		guard
+			let prefixData = prefix.data(using: .utf8),
+			let suffixData = suffix.data(using: .utf8)
+		else {
+			return nil
+		}
+
+		return prefixData + data + suffixData
+	}
+}
