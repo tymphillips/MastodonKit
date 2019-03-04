@@ -512,6 +512,7 @@
 				OBJ_137 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		OBJ_54 /* Requests */ = {
 			isa = PBXGroup;

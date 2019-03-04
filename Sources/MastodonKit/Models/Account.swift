@@ -83,8 +83,7 @@ public class Account: Codable {
         case source
     }
 
-    public struct Source: Codable
-    {
+    public struct Source: Codable {
         /// Unformatted biography of user.
         public let note: String?
         /// Unformatted metadata fields in the user's profile, if any.

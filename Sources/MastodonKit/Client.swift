@@ -23,8 +23,7 @@ public struct Client: ClientType {
     @discardableResult
     public func run<Model>(_ request: Request<Model>,
                            resumeImmediatelly: Bool,
-                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model : Codable
-    {
+                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model: Codable {
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url

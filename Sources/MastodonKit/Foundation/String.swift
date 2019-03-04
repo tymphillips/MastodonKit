@@ -14,15 +14,14 @@ extension String {
         return components.filter { !$0.isEmpty }.joined(separator: separator)
     }
 
-    private static let nonCGNLRegex = try! NSRegularExpression(pattern: "(?<=[^\\r])\\n", options: [])
+    private static let nonCGNLRegex = try? NSRegularExpression(pattern: "(?<=[^\\r])\\n", options: [])
 
-    var applyingCarriageReturns: String
-    {
+    var applyingCarriageReturns: String {
         let mutableString = NSMutableString(string: self)
-        String.nonCGNLRegex.replaceMatches(in: mutableString,
-                                           options: [],
-                                           range: NSMakeRange(0, mutableString.length),
-                                           withTemplate: "\r\n")
+        String.nonCGNLRegex?.replaceMatches(in: mutableString,
+                                            options: [],
+                                            range: NSRange(location: 0, length: mutableString.length),
+                                            withTemplate: "\r\n")
         return mutableString as String
     }
 }

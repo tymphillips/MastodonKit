@@ -73,7 +73,6 @@ func toAccessScope(string: String) -> AccessScope? {
     return AccessScope(rawValue: string)
 }
 
-protocol StringDictionaryConvertible
-{
+protocol StringDictionaryConvertible {
 	var dictionaryValue: [String: String] { get }
 }

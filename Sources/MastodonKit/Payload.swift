@@ -57,7 +57,6 @@ extension Payload {
     }
 }
 
-protocol FormParameter
-{
+protocol FormParameter {
     var formItemValue: Data? { get }
 }

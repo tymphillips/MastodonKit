@@ -35,15 +35,13 @@ public class Card: Codable {
 	public let height: Int?
 
 	/// The URL for the card content's author.
-	public var authorUrl: URL?
-	{
+	public var authorUrl: URL? {
 		guard let url = authorUrlString else { return nil }
 		return URL(string: url)
 	}
 
 	/// The URL for the card content's provider.
-	public var providerUrl: URL?
-	{
+	public var providerUrl: URL? {
 		guard let url = providerUrlString else { return nil }
 		return URL(string: url)
 	}

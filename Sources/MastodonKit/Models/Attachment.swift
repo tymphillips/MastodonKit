@@ -57,10 +57,15 @@ public class Attachment: Codable {
 
 		public struct Focus: Codable {
 			/// The X coordinate of the focus point.
-			public let x: Float
+			public let centerX: Float
 
 			/// The Y coordinate of the focus point.
-			public let y: Float
+			public let centerY: Float
+
+            enum CodingKeys: String, CodingKey {
+                case centerX = "x"
+                case centerY = "y"
+            }
 		}
 	}
 }

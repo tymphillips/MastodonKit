@@ -2,7 +2,8 @@
 //  ProfileMetadata.swift
 //  MastodonKit
 //
-//  Created by Bruno Philipe on 22.02.19.
+//  Created by Bruno Philipe on 02/22/19.
+//  Copyright © 2017 MastodonKit. All rights reserved.
 //
 
 import Foundation
@@ -18,7 +19,7 @@ public struct MetadataField: Encodable {
 }
 
 extension MetadataField: StringDictionaryConvertible {
-	var dictionaryValue: [String : String] {
+	var dictionaryValue: [String: String] {
 		return ["name": name, "value": value]
 	}
 }
@@ -33,4 +34,3 @@ public struct VerifiableMetadataField: Codable {
 		case verification = "verified_at"
 	}
 }
-
