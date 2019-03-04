@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151DF8A7222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
+		151DF8A8222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
+		151DF8A9222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
 		62864F10213AF68900823C8A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Client.swift */; };
 		62864F11213AF68900823C8A /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ClientError.swift */; };
 		62864F12213AF68900823C8A /* ClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ClientType.swift */; };
@@ -260,6 +263,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMetadata.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		629A4B0E213AF5B100A6386E /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MastodonKit::MastodonKit::Product" /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -487,6 +491,7 @@
 				OBJ_38 /* Mention.swift */,
 				OBJ_39 /* Notification.swift */,
 				OBJ_40 /* NotificationType.swift */,
+				151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */,
 				OBJ_41 /* Relationship.swift */,
 				OBJ_42 /* Report.swift */,
 				OBJ_43 /* RequestError.swift */,
@@ -836,6 +841,7 @@
 				62864F41213AF68900823C8A /* Instances.swift in Sources */,
 				62864F42213AF68900823C8A /* Lists.swift in Sources */,
 				62864F43213AF68900823C8A /* Login.swift in Sources */,
+				151DF8A9222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */,
 				62864F44213AF68900823C8A /* Media.swift in Sources */,
 				62864F45213AF68900823C8A /* Mutes.swift in Sources */,
 				62864F46213AF68900823C8A /* Notifications.swift in Sources */,
@@ -903,6 +909,7 @@
 				629A4AFF213AF5B100A6386E /* Instances.swift in Sources */,
 				629A4B00213AF5B100A6386E /* Lists.swift in Sources */,
 				629A4B01213AF5B100A6386E /* Login.swift in Sources */,
+				151DF8A8222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */,
 				629A4B02213AF5B100A6386E /* Media.swift in Sources */,
 				629A4B03213AF5B100A6386E /* Mutes.swift in Sources */,
 				629A4B04213AF5B100A6386E /* Notifications.swift in Sources */,
@@ -970,6 +977,7 @@
 				OBJ_194 /* Instances.swift in Sources */,
 				OBJ_195 /* Lists.swift in Sources */,
 				OBJ_196 /* Login.swift in Sources */,
+				151DF8A7222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */,
 				OBJ_197 /* Media.swift in Sources */,
 				OBJ_198 /* Mutes.swift in Sources */,
 				OBJ_199 /* Notifications.swift in Sources */,
