@@ -17,7 +17,7 @@ class CardTests: XCTestCase {
         XCTAssertEqual(card?.url, URL(string: "http://lorempixel.com/200/200/cats/3/"))
         XCTAssertEqual(card?.title, "Awesome card title")
         XCTAssertEqual(card?.description, "Card description")
-        XCTAssertEqual(card?.image, URL(string: "http://lorempixel.com/200/200/cats/1/"))
+        XCTAssertEqual(card?.imageUrl, URL(string: "http://lorempixel.com/200/200/cats/1/"))
     }
 
     func testCardWithInvalidData() {

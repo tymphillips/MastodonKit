@@ -54,7 +54,7 @@ class PayloadTests: XCTestCase {
 
         XCTAssertNotNil(payload.data)
         XCTAssertEqual(payloadData, "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\nimage data\r\n--MastodonKitBoundary--\r\n")
-        XCTAssertEqual(payload.type, "multipart/form-data; boundary=MastodonKitBoundary")
+        XCTAssertEqual(payload.type, "multipart/form-data; boundary=xAb54_MastodonKit_xAb54")
     }
 
     func testMediaWithNilValue() {

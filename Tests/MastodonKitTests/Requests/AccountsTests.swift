@@ -49,11 +49,9 @@ class AccountsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
-        XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
-        XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
-        XCTAssertTrue(payload.contains("avatar=data%3Aimage/jpg%3Bbase64%2CAAAAAAAAAAA%3D"))
-        XCTAssertTrue(payload.contains("header=data%3Aimage/png%3Bbase64%2CAAAAAAAAAAA%3D"))
+        XCTAssertEqual(payload, """
+--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"display_name\"\r\n\r\nOrnithologist Coder\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"note\"\r\n\r\nCreator of MastodonKit\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"avatar\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"header\"; filename=\"file.png\"\r\nContent-Type: image/png\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54--
+""")
     }
 
     func testUpdateCurrentUserWithSomeFields() {
@@ -68,9 +66,9 @@ class AccountsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("display_name=Ornithologist%20Coder"))
-        XCTAssertTrue(payload.contains("note=Creator%20of%20MastodonKit"))
+        XCTAssertEqual(payload, """
+--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"display_name\"\r\n\r\nOrnithologist Coder\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"note\"\r\n\r\nCreator of MastodonKit\r\n--xAb54_MastodonKit_xAb54--
+""")
     }
 
     func testFollowers() {
