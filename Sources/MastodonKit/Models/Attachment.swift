@@ -23,8 +23,8 @@ public class Attachment: Codable {
     public let textURL: String?
     /// A description of the image for the visually impaired.
     public let description: String?
-	/// Metadata about the attachment. Not always available.
-	public let meta: MetaCollection?
+    /// Metadata about the attachment. Not always available.
+    public let meta: MetaCollection?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -34,38 +34,38 @@ public class Attachment: Codable {
         case previewURL = "preview_url"
         case textURL = "text_url"
         case description
-		case meta
+        case meta
     }
 
-	public struct MetaCollection: Codable {
-		/// Metadata about the original resource
-		public let original: Meta?
+    public struct MetaCollection: Codable {
+        /// Metadata about the original resource
+        public let original: AttachmentMetadata?
 
-		/// Metadata about the small resource thumbnail
-		public let small: Meta?
+        /// Metadata about the small resource thumbnail
+        public let small: AttachmentMetadata?
 
-		/// The focus point of the original resource. Can be used for smart cropping.
-		public let focus: Focus?
+        /// The focus point of the original resource. Can be used for smart cropping.
+        public let focus: AttachmentFocusPoint?
+    }
+}
 
-		public struct Meta: Codable {
-			/// The width of the image or video attachment
-			public let width: Int
+public struct AttachmentMetadata: Codable {
+    /// The width of the image or video attachment
+    public let width: Int
 
-			/// The height of the image or video attachment
-			public let height: Int
-		}
+    /// The height of the image or video attachment
+    public let height: Int
+}
 
-		public struct Focus: Codable {
-			/// The X coordinate of the focus point.
-			public let centerX: Float
+public struct AttachmentFocusPoint: Codable {
+    /// The X coordinate of the focus point.
+    public let centerX: Float
 
-			/// The Y coordinate of the focus point.
-			public let centerY: Float
+    /// The Y coordinate of the focus point.
+    public let centerY: Float
 
-            enum CodingKeys: String, CodingKey {
-                case centerX = "x"
-                case centerY = "y"
-            }
-		}
-	}
+    enum CodingKeys: String, CodingKey {
+        case centerX = "x"
+        case centerY = "y"
+    }
 }
