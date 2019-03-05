@@ -10,6 +10,13 @@
 		151DF8A7222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
 		151DF8A8222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
 		151DF8A9222DCABA00DAEA7A /* ProfileMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */; };
+		151DF8AC222DDDB700DAEA7A /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AB222DDDB700DAEA7A /* Poll.swift */; };
+		151DF8AD222DDDB700DAEA7A /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AB222DDDB700DAEA7A /* Poll.swift */; };
+		151DF8AE222DDDB700DAEA7A /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AB222DDDB700DAEA7A /* Poll.swift */; };
+		151DF8B0222DDF4D00DAEA7A /* PollOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AF222DDF4D00DAEA7A /* PollOption.swift */; };
+		151DF8B1222DDF4D00DAEA7A /* PollOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AF222DDF4D00DAEA7A /* PollOption.swift */; };
+		151DF8B2222DDF4D00DAEA7A /* PollOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8AF222DDF4D00DAEA7A /* PollOption.swift */; };
+		151DF8B4222DFF8600DAEA7A /* PollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DF8B3222DFF8600DAEA7A /* PollTests.swift */; };
 		62864F10213AF68900823C8A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Client.swift */; };
 		62864F11213AF68900823C8A /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ClientError.swift */; };
 		62864F12213AF68900823C8A /* ClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ClientType.swift */; };
@@ -264,6 +271,9 @@
 
 /* Begin PBXFileReference section */
 		151DF8A6222DCABA00DAEA7A /* ProfileMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMetadata.swift; sourceTree = "<group>"; };
+		151DF8AB222DDDB700DAEA7A /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
+		151DF8AF222DDF4D00DAEA7A /* PollOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollOption.swift; sourceTree = "<group>"; };
+		151DF8B3222DFF8600DAEA7A /* PollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTests.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		629A4B0E213AF5B100A6386E /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MastodonKit::MastodonKit::Product" /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,6 +509,8 @@
 				OBJ_45 /* Status.swift */,
 				OBJ_46 /* Tag.swift */,
 				OBJ_47 /* Visibility.swift */,
+				151DF8AB222DDDB700DAEA7A /* Poll.swift */,
+				151DF8AF222DDF4D00DAEA7A /* PollOption.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -649,6 +661,7 @@
 				OBJ_111 /* StringsTests.swift */,
 				OBJ_112 /* TagTests.swift */,
 				OBJ_113 /* VisibilityTests.swift */,
+				151DF8B3222DFF8600DAEA7A /* PollTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -810,6 +823,7 @@
 				62864F21213AF68900823C8A /* Attachment.swift in Sources */,
 				62864F22213AF68900823C8A /* AttachmentType.swift in Sources */,
 				62864F23213AF68900823C8A /* Card.swift in Sources */,
+				151DF8AE222DDDB700DAEA7A /* Poll.swift in Sources */,
 				62864F24213AF68900823C8A /* ClientApplication.swift in Sources */,
 				62864F25213AF68900823C8A /* Context.swift in Sources */,
 				62864F26213AF68900823C8A /* Emoji.swift in Sources */,
@@ -846,6 +860,7 @@
 				62864F44213AF68900823C8A /* Media.swift in Sources */,
 				62864F45213AF68900823C8A /* Mutes.swift in Sources */,
 				62864F46213AF68900823C8A /* Notifications.swift in Sources */,
+				151DF8B2222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				62864F47213AF68900823C8A /* Reports.swift in Sources */,
 				62864F48213AF68900823C8A /* Search.swift in Sources */,
 				62864F49213AF68900823C8A /* Statuses.swift in Sources */,
@@ -878,6 +893,7 @@
 				629A4ADF213AF5B100A6386E /* Attachment.swift in Sources */,
 				629A4AE0213AF5B100A6386E /* AttachmentType.swift in Sources */,
 				629A4AE1213AF5B100A6386E /* Card.swift in Sources */,
+				151DF8AD222DDDB700DAEA7A /* Poll.swift in Sources */,
 				629A4AE2213AF5B100A6386E /* ClientApplication.swift in Sources */,
 				629A4AE3213AF5B100A6386E /* Context.swift in Sources */,
 				629A4AE4213AF5B100A6386E /* Emoji.swift in Sources */,
@@ -914,6 +930,7 @@
 				629A4B02213AF5B100A6386E /* Media.swift in Sources */,
 				629A4B03213AF5B100A6386E /* Mutes.swift in Sources */,
 				629A4B04213AF5B100A6386E /* Notifications.swift in Sources */,
+				151DF8B1222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				629A4B05213AF5B100A6386E /* Reports.swift in Sources */,
 				629A4B06213AF5B100A6386E /* Search.swift in Sources */,
 				629A4B07213AF5B100A6386E /* Statuses.swift in Sources */,
@@ -946,6 +963,7 @@
 				OBJ_162 /* Attachment.swift in Sources */,
 				OBJ_163 /* AttachmentType.swift in Sources */,
 				OBJ_164 /* Card.swift in Sources */,
+				151DF8AC222DDDB700DAEA7A /* Poll.swift in Sources */,
 				OBJ_165 /* ClientApplication.swift in Sources */,
 				OBJ_166 /* Context.swift in Sources */,
 				OBJ_167 /* Emoji.swift in Sources */,
@@ -982,6 +1000,7 @@
 				OBJ_197 /* Media.swift in Sources */,
 				OBJ_198 /* Mutes.swift in Sources */,
 				OBJ_199 /* Notifications.swift in Sources */,
+				151DF8B0222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				OBJ_200 /* Reports.swift in Sources */,
 				OBJ_201 /* Search.swift in Sources */,
 				OBJ_202 /* Statuses.swift in Sources */,
@@ -1022,6 +1041,7 @@
 				OBJ_247 /* LoginSettingsTests.swift in Sources */,
 				OBJ_248 /* MastodonErrorTests.swift in Sources */,
 				OBJ_249 /* MentionTests.swift in Sources */,
+				151DF8B4222DFF8600DAEA7A /* PollTests.swift in Sources */,
 				OBJ_250 /* NotificationTests.swift in Sources */,
 				OBJ_251 /* NotificationTypeTests.swift in Sources */,
 				OBJ_252 /* RelationshipTests.swift in Sources */,
