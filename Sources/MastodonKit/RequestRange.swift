@@ -47,6 +47,19 @@ extension RequestRange {
     }
 }
 
+public extension RequestRange {
+
+    var id: String? {
+        switch self {
+        case .max(let id, _), .min(let id, _), .since(let id, _):
+            return id
+
+        case .limit, .default:
+            return nil
+        }
+    }
+}
+
 // MARK: - Equatable
 
 extension RequestRange: Equatable {}
