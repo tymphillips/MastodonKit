@@ -48,6 +48,7 @@ identifier_name:
     error: 3
   excluded:
     - id
+    - _emojis
 
 line_length: 120
 
