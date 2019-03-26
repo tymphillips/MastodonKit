@@ -53,7 +53,7 @@ class PayloadTests: XCTestCase {
         let payloadData = String(data: payload.data!, encoding: .utf8)
 
         XCTAssertNotNil(payload.data)
-        XCTAssertEqual(payloadData, "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\nimage data\r\n--MastodonKitBoundary--\r\n")
+        XCTAssertEqual(payloadData, "--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\nimage data\r\n--xAb54_MastodonKit_xAb54--\r\n")
         XCTAssertEqual(payload.type, "multipart/form-data; boundary=xAb54_MastodonKit_xAb54")
     }
 

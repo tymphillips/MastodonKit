@@ -16,7 +16,7 @@ class DataTests: XCTestCase {
 
         XCTAssertEqual(
             String(data: data!, encoding: .utf8),
-            "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\n\r\n--MastodonKitBoundary--\r\n"
+            "--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\n\r\n--xAb54_MastodonKit_xAb54--\r\n"
         )
     }
 
@@ -26,7 +26,7 @@ class DataTests: XCTestCase {
 
         XCTAssertEqual(
             String(data: data!, encoding: .utf8),
-            "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.gif\"\r\nContent-Type: image/gif\r\n\r\n\r\n--MastodonKitBoundary--\r\n"
+            "--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.gif\"\r\nContent-Type: image/gif\r\n\r\n\r\n--xAb54_MastodonKit_xAb54--\r\n"
         )
     }
 
@@ -36,7 +36,7 @@ class DataTests: XCTestCase {
 
         XCTAssertEqual(
             String(data: data!, encoding: .utf8),
-            "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\nContent-Type: image/png\r\n\r\n\r\n--MastodonKitBoundary--\r\n"
+            "--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\nContent-Type: image/png\r\n\r\n\r\n--xAb54_MastodonKit_xAb54--\r\n"
         )
     }
 
@@ -47,7 +47,7 @@ class DataTests: XCTestCase {
 
         XCTAssertEqual(
             String(data: data!, encoding: .utf8),
-            "--MastodonKitBoundary\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.mp4\"\r\nContent-Type: video/mp4\r\n\r\n\r\n--MastodonKitBoundary--\r\n"
+            "--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"file\"; filename=\"file.mp4\"\r\nContent-Type: video/mp4\r\n\r\n\r\n--xAb54_MastodonKit_xAb54--\r\n"
         )
     }
 
