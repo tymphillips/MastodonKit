@@ -9,7 +9,7 @@
 import Foundation
 
 public extension DateFormatter {
-    public static let mastodonFormatter: DateFormatter = {
+    static let mastodonFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SZ"
