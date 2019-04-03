@@ -32,3 +32,7 @@ Content-Disposition: form-data; name="\(name)"
 """.applyingCarriageReturns.data(using: .utf8)
 	}
 }
+
+extension Parameter: Codable {
+	
+}

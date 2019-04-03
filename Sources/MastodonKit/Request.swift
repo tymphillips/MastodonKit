@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Request<Model: Codable> {
+public struct Request<Model: Codable>: Codable {
     let path: String
     let method: HTTPMethod
     let timeout: TimeInterval?

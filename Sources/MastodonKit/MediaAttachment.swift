@@ -52,6 +52,58 @@ extension MediaAttachment {
     }
 }
 
+extension MediaAttachment: Codable {
+
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		let type = try container.decode(String.self, forKey: .type)
+
+		switch type {
+		case "jpeg": self = .jpeg(try container.decodeIfPresent(Data.self, forKey: .data))
+		case "gif": self = .gif(try container.decodeIfPresent(Data.self, forKey: .data))
+		case "png": self = .png(try container.decodeIfPresent(Data.self, forKey: .data))
+		case "other":
+			self = .other(try container.decodeIfPresent(Data.self, forKey: .data),
+						  fileExtension: try container.decode(String.self, forKey: .fileExtension),
+						  mimeType: try container.decode(String.self, forKey: .mimeType))
+		default:
+			throw DecodingError.dataCorruptedError(forKey: .type,
+												   in: container,
+												   debugDescription: "Unknown media attachment type: \(type)")
+		}
+	}
+
+	public func encode(to encoder: Encoder) throws {
+
+		var container = encoder.container(keyedBy: CodingKeys.self)
+
+		switch self {
+
+		case .jpeg(let data):
+			try container.encode("jpeg", forKey: .type)
+			try container.encodeIfPresent(data, forKey: .data)
+
+		case .gif(let data):
+			try container.encode("gif", forKey: .type)
+			try container.encodeIfPresent(data, forKey: .data)
+
+		case .png(let data):
+			try container.encode("png", forKey: .type)
+			try container.encodeIfPresent(data, forKey: .data)
+
+		case .other(let data, let fileExtension, let mimeType):
+			try container.encode("other", forKey: .type)
+			try container.encodeIfPresent(data, forKey: .data)
+			try container.encode(fileExtension, forKey: .fileExtension)
+			try container.encode(mimeType, forKey: .mimeType)
+		}
+	}
+
+	enum CodingKeys: String, CodingKey {
+		case type, data, fileExtension, mimeType
+	}
+}
+
 // MARK: - Form Parameter
 
 struct FormMediaAttachment {
