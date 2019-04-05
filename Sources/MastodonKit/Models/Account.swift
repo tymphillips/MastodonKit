@@ -20,15 +20,15 @@ public class Account: Codable {
     /// Biography of user.
     public let note: String
     /// URL of the user's profile page (can be remote).
-    public let url: String
+    public let url: URL
     /// URL to the avatar image.
-    public let avatar: String
+    public let avatar: URL
     /// URL to the avatar static image
-    public let avatarStatic: String
+    public let avatarStatic: URL
     /// URL to the header image.
-    public let header: String
+    public let header: URL
     /// URL to the header static image
-    public let headerStatic: String
+    public let headerStatic: URL
     /// Boolean for when the account cannot be followed without waiting for approval first.
     public let locked: Bool
     /// The time the account was created.
