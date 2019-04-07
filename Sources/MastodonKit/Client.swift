@@ -76,4 +76,35 @@ public struct Client: ClientType {
 
         return task
     }
+
+    public func runAndAggregateAllPages<Model: Codable>(requestProvider: @escaping (Pagination) -> Request<[Model]>,
+                                                        completion: @escaping (Result<[Model]>) -> Void) {
+
+        let aggregationQueue = DispatchQueue(label: "Aggregation", qos: .utility)
+        var aggregateResults: [Model] = []
+
+        func fetchPage(pagination: Pagination) {
+            run(requestProvider(pagination)) { (result) in
+
+                switch result {
+                case .success(let partialResult, let newPagination):
+                    aggregationQueue.async {
+                        aggregateResults.append(contentsOf: partialResult)
+
+                        if !partialResult.isEmpty, let pagination = newPagination, pagination.next != nil {
+                            fetchPage(pagination: pagination)
+                        } else {
+                            completion(.success(aggregateResults, nil))
+                        }
+                    }
+
+                case .failure(let error):
+                    completion(.failure(error))
+                    break
+                }
+            }
+        }
+
+        fetchPage(pagination: Pagination(next: nil, previous: nil))
+    }
 }
