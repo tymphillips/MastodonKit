@@ -12,5 +12,5 @@ public class Tag: Codable {
     /// The hashtag, not including the preceding #.
     public let name: String
     /// The URL of the hashtag.
-    public let url: String
+    public let url: URL
 }
