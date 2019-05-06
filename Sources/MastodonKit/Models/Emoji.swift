@@ -16,6 +16,12 @@ public class Emoji: Codable {
     /// URL to the emoji image
     public let url: URL
 
+    public init(shortcode: String, staticURL: URL, url: URL) {
+        self.shortcode = shortcode
+        self.staticURL = staticURL
+        self.url = url
+    }
+
     private enum CodingKeys: String, CodingKey {
         case shortcode
         case staticURL = "static_url"
