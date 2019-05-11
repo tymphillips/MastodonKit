@@ -16,5 +16,5 @@ public class Mention: Codable {
     /// Equals username for local users, includes @domain for remote ones.
     public let acct: String
     /// URL of user's profile (can be remote).
-    public let url: String
+    public let url: URL
 }
