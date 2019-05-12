@@ -19,4 +19,25 @@ public class Instance: Codable {
     public let email: String
     /// The Mastodon version used by instance (as of version 1.3).
     public let version: String?
+    /// A thumbnail image to use for this instance (as of version 1.6.1).
+    public let thumbnail: URL?
+    /// Some statistics about this instance (as of version 1.6).
+    public let stats: Stats?
+    /// List of "official" languages used in this instance (as of version 2.3).
+    public let languages: [String]?
+
+    public struct Stats: Codable {
+        /// Number of users registered in this instance.
+        public let userCount: Int
+        /// Number of statuses posted in this instance.
+        public let statusCount: Int
+        /// Number of domains in this instance.
+        public let domainCount: Int
+
+        enum CodingKeys: String, CodingKey {
+            case userCount = "user_count"
+            case statusCount = "status_count"
+            case domainCount = "domain_count"
+        }
+    }
 }
