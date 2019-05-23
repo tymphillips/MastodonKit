@@ -14,7 +14,7 @@ public class Card: Codable {
 	/// The title of the card.
 	public let title: String
 	/// The card description.
-	public let description: String
+	public let description: String?
 	/// The image associated with the card, if any.
 	public let imageUrl: URL?
 	/// The type of the card's contents.
