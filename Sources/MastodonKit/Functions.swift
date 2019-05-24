@@ -57,6 +57,10 @@ func trueOrNil(_ flag: Bool) -> String? {
     return flag ? "true" : nil
 }
 
+func toString(_ flag: Bool) -> String {
+	return flag ? "true" : "false"
+}
+
 func trim(left: Character, right: Character) -> (String) -> String {
     return { string in
         guard string.hasPrefix("\(left)"), string.hasSuffix("\(right)") else { return string }

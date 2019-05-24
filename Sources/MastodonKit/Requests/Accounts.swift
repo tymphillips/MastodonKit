@@ -51,8 +51,8 @@ public enum Accounts {
             Parameter(name: "note", value: note?.applyingCarriageReturns),
             FormMediaAttachment(name: "avatar", mediaAttachment: avatar),
             FormMediaAttachment(name: "header", mediaAttachment: header),
-            Parameter(name: "locked", value: locked.flatMap(trueOrNil)),
-            Parameter(name: "bot", value: bot.flatMap(trueOrNil))
+            Parameter(name: "locked", value: locked.flatMap(toString)),
+            Parameter(name: "bot", value: bot.flatMap(toString))
         ] + (fieldsDictionary as [FormParameter]? ?? [])
 
         let method = HTTPMethod.patch(.form(parameters))
