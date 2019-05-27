@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum NotificationType: String, Codable {
+public enum NotificationType: Codable {
     /// The user has been mentioned.
     case mention
     /// The status message has been reblogged.
@@ -17,4 +17,29 @@ public enum NotificationType: String, Codable {
     case favourite
     /// The user has a new follower.
     case follow
+
+    /// An unknown notification type
+    case other(String)
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        switch try container.decode(String.self) {
+        case "mention": self = .mention
+        case "reblog": self = .reblog
+        case "favourite": self = .favourite
+        case "follow": self = .follow
+        case let other: self = .other(other)
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .mention: try container.encode("mention")
+        case .reblog: try container.encode("reblog")
+        case .favourite: try container.encode("favourite")
+        case .follow: try container.encode("follow")
+        case .other(let other): try container.encode(other)
+        }
+    }
 }
