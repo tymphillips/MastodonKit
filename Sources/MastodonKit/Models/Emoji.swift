@@ -15,16 +15,20 @@ public class Emoji: Codable {
     public let staticURL: URL
     /// URL to the emoji image
     public let url: URL
+    /// Whether the emoji should be shown in the composer emoji picker.
+    public let visibleInPicker: Bool
 
-    public init(shortcode: String, staticURL: URL, url: URL) {
+    public init(shortcode: String, staticURL: URL, url: URL, visibleInPicker: Bool) {
         self.shortcode = shortcode
         self.staticURL = staticURL
         self.url = url
+        self.visibleInPicker = visibleInPicker
     }
 
     private enum CodingKeys: String, CodingKey {
         case shortcode
         case staticURL = "static_url"
         case url
+        case visibleInPicker = "visible_in_picker"
     }
 }
