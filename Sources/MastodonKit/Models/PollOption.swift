@@ -10,9 +10,9 @@ import Foundation
 
 public struct PollOption: Codable {
     /// The title of the poll option.
-    let title: String
+    public let title: String
     /// The number of votes this option received, if any.
-    let votesCount: Int?
+    public let votesCount: Int?
 
     enum CodingKeys: String, CodingKey {
         case title

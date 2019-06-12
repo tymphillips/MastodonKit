@@ -10,19 +10,19 @@ import Foundation
 
 public class Poll: Codable {
     /// The id of the poll
-    let id: String
+    public let id: String
     /// When voting on the poll closes.
-    let expiresAt: Date?
+    public let expiresAt: Date?
     /// Whether voting has closed on the poll.
-    let expired: Bool
+    public let expired: Bool
     /// Whether multiple options can be picked for the poll, instead of a single one.
-    let multiple: Bool
+    public let multiple: Bool
     /// Number of total votes the poll received so far.
-    let votesCount: Int
+    public let votesCount: Int
     /// List of options in the poll.
-    let options: [PollOption]
+    public let options: [PollOption]
     /// Whether the active user has voted in the poll.
-    let voted: Bool?
+    public let voted: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id
