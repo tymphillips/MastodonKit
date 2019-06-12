@@ -57,6 +57,8 @@ public class Status: Codable {
     public let pinned: Bool?
     /// A content card with linked content.
     public let card: Card?
+	/// A poll
+	public let poll: Poll?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -83,5 +85,6 @@ public class Status: Codable {
         case reblog
         case pinned
         case card
+		case poll
     }
 }
