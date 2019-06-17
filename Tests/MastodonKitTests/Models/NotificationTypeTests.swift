@@ -27,6 +27,6 @@ class NotificationTypeTests: XCTestCase {
     }
 
     func testInvalidType() {
-        XCTAssertNil(NotificationType(rawValue: "foobar"))
+        XCTAssertEqual(NotificationType(rawValue: "foobar"), NotificationType.other("foobar"))
     }
 }

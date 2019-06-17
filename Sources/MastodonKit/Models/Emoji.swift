@@ -16,7 +16,7 @@ public class Emoji: Codable {
     /// URL to the emoji image
     public let url: URL
     /// Whether the emoji should be shown in the composer emoji picker.
-    public let visibleInPicker: Bool
+    public let visibleInPicker: Bool?
 
     public init(shortcode: String, staticURL: URL, url: URL, visibleInPicker: Bool) {
         self.shortcode = shortcode

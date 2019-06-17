@@ -8,7 +8,10 @@
 
 import Foundation
 
-public enum NotificationType: Codable {
+public enum NotificationType: Codable, RawRepresentable, Equatable {
+
+    public typealias RawValue = String
+
     /// The user has been mentioned.
     case mention
     /// The status message has been reblogged.
@@ -32,6 +35,16 @@ public enum NotificationType: Codable {
         }
     }
 
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "mention": self = .mention
+        case "reblog": self = .reblog
+        case "favourite": self = .favourite
+        case "follow": self = .follow
+        case let other: self = .other(other)
+        }
+    }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
@@ -40,6 +53,16 @@ public enum NotificationType: Codable {
         case .favourite: try container.encode("favourite")
         case .follow: try container.encode("follow")
         case .other(let other): try container.encode(other)
+        }
+    }
+
+    public var rawValue: String {
+        switch self {
+        case .mention: return "mention"
+        case .reblog: return "reblog"
+        case .favourite: return "favourite"
+        case .follow: return "follow"
+        case .other(let other): return other
         }
     }
 }
