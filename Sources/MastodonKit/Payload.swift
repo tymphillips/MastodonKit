@@ -32,8 +32,8 @@ extension Payload {
 
         case .form(let parameters):
             return parameters?.compactMap({ $0.formItemValue })
-                              .reduce(Data(), +)
-                              .appending("--\(Payload.formBoundary)--")
+                .reduce(Data(), +)
+                .appending("--\(Payload.formBoundary)--")
 
         case .media(let mediaAttachment):
             return mediaAttachment.flatMap(Data.init)
@@ -59,52 +59,52 @@ extension Payload {
 
 extension Payload: Codable {
 
-	func encode(to encoder: Encoder) throws {
-		var container = encoder.container(keyedBy: CodingKeys.self)
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
 
-		switch self {
-		case .parameters(let parameters):
-			try container.encode("parameters", forKey: .type)
-			try container.encodeIfPresent(parameters, forKey: .parameters)
+        switch self {
+        case .parameters(let parameters):
+            try container.encode("parameters", forKey: .type)
+            try container.encodeIfPresent(parameters, forKey: .parameters)
 
-		case .form:
-			throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: [CodingKeys.type],
-																		 debugDescription: "Form Payloads can not be encoded"))
+        case .form:
+            throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: [CodingKeys.type],
+                                                                         debugDescription: "Form Payloads can not be encoded"))
 
-		case .media(let media):
-			try container.encode("media", forKey: .type)
-			try container.encodeIfPresent(media, forKey: .media)
+        case .media(let media):
+            try container.encode("media", forKey: .type)
+            try container.encodeIfPresent(media, forKey: .media)
 
-		case .empty:
-			try container.encode("empty", forKey: .type)
+        case .empty:
+            try container.encode("empty", forKey: .type)
 
-		}
-	}
+        }
+    }
 
-	init(from decoder: Decoder) throws {
-		let container = try decoder.container(keyedBy: CodingKeys.self)
-		let type = try container.decode(String.self, forKey: .type)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let type = try container.decode(String.self, forKey: .type)
 
-		switch type {
-		case "parameters":
-			self = .parameters(try container.decodeIfPresent([Parameter].self, forKey: .parameters))
+        switch type {
+        case "parameters":
+            self = .parameters(try container.decodeIfPresent([Parameter].self, forKey: .parameters))
 
-		case "media":
-			self = .media(try container.decodeIfPresent(MediaAttachment.self, forKey: .media))
+        case "media":
+            self = .media(try container.decodeIfPresent(MediaAttachment.self, forKey: .media))
 
-		case "empty":
-			self = .empty
+        case "empty":
+            self = .empty
 
-		default:
-			throw DecodingError.dataCorruptedError(forKey: .type,
-												   in: container,
-												   debugDescription: "Payload type not supported: \(type)")
-		}
-	}
+        default:
+            throw DecodingError.dataCorruptedError(forKey: .type,
+                                                   in: container,
+                                                   debugDescription: "Payload type not supported: \(type)")
+        }
+    }
 
-	enum CodingKeys: String, CodingKey {
-		case type, parameters, media
-	}
+    enum CodingKeys: String, CodingKey {
+        case type, parameters, media
+    }
 }
 
 protocol FormParameter: Codable {
