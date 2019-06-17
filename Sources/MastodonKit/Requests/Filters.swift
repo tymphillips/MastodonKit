@@ -2,7 +2,7 @@
 //  Filters.swift
 //  MastodonKit
 //
-//  Created by Bruno Philipe on 10.06.19.
+//  Created by Bruno Philipe on 10/06/19.
 //  Copyright © 2017 MastodonKit. All rights reserved.
 //
 
