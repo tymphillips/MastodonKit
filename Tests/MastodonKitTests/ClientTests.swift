@@ -229,9 +229,9 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
     func testPassedRequest() {
         let request = mockSession.lastRequest
 
-        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v1/search?q=MastodonKit")
+        XCTAssertEqual(request?.url?.absoluteString, "https://my.mastodon.instance/api/v2/search?q=MastodonKit")
         XCTAssertEqual(request?.url?.host, "my.mastodon.instance")
-        XCTAssertEqual(request?.url?.path, "/api/v1/search")
+        XCTAssertEqual(request?.url?.path, "/api/v2/search")
         XCTAssertEqual(request?.timeoutInterval, 30)
         XCTAssertEqual(request?.value(forHTTPHeaderField: "Authorization"), "Bearer bär")
 
