@@ -17,7 +17,7 @@ class MentionTests: XCTestCase {
         XCTAssertEqual(mention?.id, "42")
         XCTAssertEqual(mention?.username, "ornithocoder")
         XCTAssertEqual(mention?.acct, "ornithocoder")
-        XCTAssertEqual(mention?.url, "https://mastodon.technology/@ornithocoder")
+        XCTAssertEqual(mention?.url, URL(string: "https://mastodon.technology/@ornithocoder"))
     }
 
     func testMentionWithInvalidData() {

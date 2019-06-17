@@ -15,7 +15,7 @@ class TagTests: XCTestCase {
         let tag = try? Tag.decode(data: fixture)
 
         XCTAssertEqual(tag?.name, "mastodon")
-        XCTAssertEqual(tag?.url, "https://mastodon.technology/web/timelines/tag/mastodonkit")
+        XCTAssertEqual(tag?.url, URL(string: "https://mastodon.technology/web/timelines/tag/mastodonkit"))
     }
 
     func testTagWithInvalidData() {
