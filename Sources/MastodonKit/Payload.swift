@@ -69,7 +69,7 @@ extension Payload: Codable {
 
         case .form:
             throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: [CodingKeys.type],
-                                                                         debugDescription: "Form Payloads can not be encoded"))
+                                                                         debugDescription: "Form couldn't be encoded"))
 
         case .media(let media):
             try container.encode("media", forKey: .type)

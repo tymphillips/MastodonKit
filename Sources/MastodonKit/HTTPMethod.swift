@@ -61,8 +61,7 @@ extension HTTPMethod: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
 
-        switch type
-        {
+        switch type {
         case "get":
             self = .get(try container.decode(Payload.self, forKey: .payload))
         case "post":

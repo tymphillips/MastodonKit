@@ -84,7 +84,7 @@ public struct Client: ClientType {
         var aggregateResults: [Model] = []
 
         func fetchPage(pagination: Pagination) {
-            run(requestProvider(pagination)) { (result) in
+            run(requestProvider(pagination)) { result in
 
                 switch result {
                 case .success(let partialResult, let newPagination):
@@ -100,7 +100,6 @@ public struct Client: ClientType {
 
                 case .failure(let error):
                     completion(.failure(error))
-                    break
                 }
             }
         }

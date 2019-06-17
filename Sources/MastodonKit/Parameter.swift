@@ -34,5 +34,4 @@ Content-Disposition: form-data; name="\(name)"
 }
 
 extension Parameter: Codable {
-	
 }
