@@ -17,4 +17,14 @@ public enum AttachmentType: String, Codable {
     case gifv
     /// The attachment contains an unknown image file.
     case unknown
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        switch try container.decode(String.self) {
+        case "image": self = .image
+        case "video": self = .video
+        case "gifv": self = .gifv
+        default: self = .unknown
+        }
+    }
 }

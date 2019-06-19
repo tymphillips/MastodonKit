@@ -51,10 +51,16 @@ public class Attachment: Codable {
 
 public struct AttachmentMetadata: Codable {
     /// The width of the image or video attachment
-    public let width: Int
+    public let width: Int?
 
     /// The height of the image or video attachment
-    public let height: Int
+    public let height: Int?
+
+    /// The duration of media attachments
+    public let duration: Double?
+
+    /// The bitrate of media attachments
+    public let bitrate: Int?
 }
 
 public struct AttachmentFocusPoint: Codable {
