@@ -28,7 +28,7 @@ class PollsTests: XCTestCase {
         let request = Polls.vote(pollID: "an-id", optionIndices: IndexSet(integer: 1))
 
         // Endpoint
-        XCTAssertEqual(request.path, "/api/v1/polls/an-id")
+        XCTAssertEqual(request.path, "/api/v1/polls/an-id/votes")
 
         // Method
         XCTAssertEqual(request.method.name, "POST")
@@ -43,7 +43,7 @@ class PollsTests: XCTestCase {
         let request = Polls.vote(pollID: "an-id", optionIndices: IndexSet(arrayLiteral: 1, 3, 4))
 
         // Endpoint
-        XCTAssertEqual(request.path, "/api/v1/polls/an-id")
+        XCTAssertEqual(request.path, "/api/v1/polls/an-id/votes")
 
         // Method
         XCTAssertEqual(request.method.name, "POST")
