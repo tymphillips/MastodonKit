@@ -10,7 +10,7 @@ import Foundation
 
 extension URLRequest {
     init<A>(url: URL, request: Request<A>, accessToken: String?) {
-        self.init(url: url, timeoutInterval: 30)
+        self.init(url: url, timeoutInterval: request.timeout ?? 30)
 
         httpMethod = request.method.name
         httpBody = request.method.httpBody

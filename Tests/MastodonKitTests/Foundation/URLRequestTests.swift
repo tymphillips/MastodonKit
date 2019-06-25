@@ -53,4 +53,18 @@ class URLRequestTests: XCTestCase {
         XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Authorization"), "Bearer foo")
         XCTAssertNil(urlRequest.value(forHTTPHeaderField: "Content-Type"))
     }
+
+    func testRequestWithTimeout() {
+        let url = URL(string: "https://mastodon.technology")!
+        let request = Request<String>(path: "/string", method: HTTPMethod.get(.empty), timeout: 120)
+
+        let urlRequest = URLRequest(url: url, request: request, accessToken: "foo")
+
+        XCTAssertEqual(urlRequest.httpMethod, "GET")
+        XCTAssertNil(urlRequest.httpBody)
+
+        XCTAssertEqual(urlRequest.value(forHTTPHeaderField: "Authorization"), "Bearer foo")
+        XCTAssertNil(urlRequest.value(forHTTPHeaderField: "Content-Type"))
+        XCTAssertEqual(urlRequest.timeoutInterval, 120)
+    }
 }

@@ -32,11 +32,7 @@ public struct Client: ClientType {
             return nil
         }
 
-        var urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
-
-        if let timeout = request.timeout {
-            urlRequest.timeoutInterval = timeout
-        }
+        let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
 
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
