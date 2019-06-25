@@ -19,8 +19,8 @@ public struct MetadataField: Encodable {
 }
 
 extension MetadataField: StringDictionaryConvertible {
-	var dictionaryValue: [String: String] {
-		return ["name": name, "value": value]
+    var dictionaryValue: [(key: String, value: String)] {
+        return [(key: "name", value: name), (key: "value", value: value)]
 	}
 }
 

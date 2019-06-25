@@ -78,5 +78,5 @@ func toAccessScope(string: String) -> AccessScope? {
 }
 
 protocol StringDictionaryConvertible {
-	var dictionaryValue: [String: String] { get }
+    var dictionaryValue: [(key: String, value: String)] { get }
 }
