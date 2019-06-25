@@ -202,6 +202,28 @@ class StatusesTests: XCTestCase {
         XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
     }
 
+    func testCreateWithMessageAndPoll() {
+        let request = Statuses.create(status: "What is best?",
+                                      poll: PollPayload(options: ["A", "B"], expiration: 1800, multipleChoice: false))
+
+        // Endpoint
+        XCTAssertEqual(request.path, "/api/v1/statuses")
+
+        // Method
+        XCTAssertEqual(request.method.name, "POST")
+        XCTAssertNil(request.method.queryItems)
+        XCTAssertNotNil(request.method.httpBody)
+
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "What is best?")
+
+        let pollPayload = payload["poll"] as! NSDictionary
+        XCTAssertEqual(pollPayload["options"] as? [String], ["A", "B"])
+        XCTAssertEqual(pollPayload["expires_in"] as? Int, 1800)
+        XCTAssertEqual(pollPayload["multiple"] as? Bool, false)
+    }
+
     func testDelete() {
         let request = Statuses.delete(id: "42")
 

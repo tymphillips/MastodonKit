@@ -75,6 +75,7 @@ public enum Statuses {
                               mediaIDs: [String] = [],
                               sensitive: Bool? = nil,
                               spoilerText: String? = nil,
+                              poll: PollPayload? = nil,
                               visibility: Visibility = .public) -> Request<Status> {
         let parameters: [String: AnyEncodable?] = [
             "status": AnyEncodable(status),
@@ -82,7 +83,8 @@ public enum Statuses {
             "sensitive": (sensitive ?? false) ? AnyEncodable(true) : nil,
             "spoiler_text": spoilerText.map { AnyEncodable($0) },
             "visibility": AnyEncodable(visibility.rawValue),
-            "media_ids": mediaIDs.isEmpty ? nil : AnyEncodable(mediaIDs)
+            "media_ids": mediaIDs.isEmpty ? nil : AnyEncodable(mediaIDs),
+            "poll": poll.map { AnyEncodable($0) }
         ]
 
         let method = HTTPMethod.post(.json(encoding: parameters.compactMapValues { $0 }))

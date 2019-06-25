@@ -30,6 +30,10 @@
 		15861D2722B8436300C37885 /* Polls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2522B8436300C37885 /* Polls.swift */; };
 		15861D2822B8436300C37885 /* Polls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2522B8436300C37885 /* Polls.swift */; };
 		15861D2D22B8454A00C37885 /* PollsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2922B8451800C37885 /* PollsTests.swift */; };
+		15CAFCD922C1923E00444841 /* PollPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCD822C1923E00444841 /* PollPayload.swift */; };
+		15CAFCDA22C1923E00444841 /* PollPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCD822C1923E00444841 /* PollPayload.swift */; };
+		15CAFCDB22C1923E00444841 /* PollPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCD822C1923E00444841 /* PollPayload.swift */; };
+		15CAFCDD22C1933A00444841 /* PollPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCDC22C1933A00444841 /* PollPayloadTests.swift */; };
 		62864F10213AF68900823C8A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Client.swift */; };
 		62864F11213AF68900823C8A /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ClientError.swift */; };
 		62864F12213AF68900823C8A /* ClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ClientType.swift */; };
@@ -320,6 +324,8 @@
 		155B4CA422C2B03B00C997F9 /* Poll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Poll.json; sourceTree = "<group>"; };
 		15861D2522B8436300C37885 /* Polls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polls.swift; sourceTree = "<group>"; };
 		15861D2922B8451800C37885 /* PollsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollsTests.swift; sourceTree = "<group>"; };
+		15CAFCD822C1923E00444841 /* PollPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollPayload.swift; sourceTree = "<group>"; };
+		15CAFCDC22C1933A00444841 /* PollPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollPayloadTests.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		629A4B0E213AF5B100A6386E /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MastodonKit::MastodonKit::Product" /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -514,6 +520,15 @@
 			path = Fixtures;
 			sourceTree = "<group>";
 		};
+		155B4CA622C2C41800C997F9 /* Payloads */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_51 /* Payload.swift */,
+				15CAFCD822C1923E00444841 /* PollPayload.swift */,
+			);
+			path = Payloads;
+			sourceTree = "<group>";
+		};
 		OBJ_119 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +682,7 @@
 				OBJ_115 /* PaginationTests.swift */,
 				OBJ_116 /* ParameterTests.swift */,
 				OBJ_117 /* PayloadTests.swift */,
+				15CAFCDC22C1933A00444841 /* PollPayloadTests.swift */,
 				OBJ_118 /* RequestRangeTests.swift */,
 				OBJ_119 /* Requests */,
 				OBJ_136 /* ResultTests.swift */,
@@ -691,6 +707,7 @@
 		OBJ_8 /* MastodonKit */ = {
 			isa = PBXGroup;
 			children = (
+				155B4CA622C2C41800C997F9 /* Payloads */,
 				OBJ_9 /* Client.swift */,
 				OBJ_10 /* ClientError.swift */,
 				OBJ_11 /* ClientType.swift */,
@@ -702,7 +719,6 @@
 				OBJ_48 /* Pagination.swift */,
 				OBJ_49 /* PaginationItem.swift */,
 				OBJ_50 /* Parameter.swift */,
-				OBJ_51 /* Payload.swift */,
 				OBJ_52 /* Request.swift */,
 				OBJ_53 /* RequestRange.swift */,
 				OBJ_54 /* Requests */,
@@ -941,6 +957,7 @@
 				62864F3C213AF68900823C8A /* Blocks.swift in Sources */,
 				62864F3D213AF68900823C8A /* Clients.swift in Sources */,
 				62864F3E213AF68900823C8A /* DomainBlocks.swift in Sources */,
+				15CAFCDB22C1923E00444841 /* PollPayload.swift in Sources */,
 				62864F3F213AF68900823C8A /* Favourites.swift in Sources */,
 				62864F40213AF68900823C8A /* FollowRequests.swift in Sources */,
 				62864F41213AF68900823C8A /* Instances.swift in Sources */,
@@ -1015,6 +1032,7 @@
 				629A4AFA213AF5B100A6386E /* Blocks.swift in Sources */,
 				629A4AFB213AF5B100A6386E /* Clients.swift in Sources */,
 				629A4AFC213AF5B100A6386E /* DomainBlocks.swift in Sources */,
+				15CAFCDA22C1923E00444841 /* PollPayload.swift in Sources */,
 				629A4AFD213AF5B100A6386E /* Favourites.swift in Sources */,
 				629A4AFE213AF5B100A6386E /* FollowRequests.swift in Sources */,
 				629A4AFF213AF5B100A6386E /* Instances.swift in Sources */,
@@ -1089,6 +1107,7 @@
 				OBJ_189 /* Blocks.swift in Sources */,
 				OBJ_190 /* Clients.swift in Sources */,
 				OBJ_191 /* DomainBlocks.swift in Sources */,
+				15CAFCD922C1923E00444841 /* PollPayload.swift in Sources */,
 				OBJ_192 /* Favourites.swift in Sources */,
 				OBJ_193 /* FollowRequests.swift in Sources */,
 				OBJ_194 /* Instances.swift in Sources */,
@@ -1172,6 +1191,7 @@
 				OBJ_276 /* ReportsTests.swift in Sources */,
 				OBJ_277 /* SearchTests.swift in Sources */,
 				OBJ_278 /* StatusesTests.swift in Sources */,
+				15CAFCDD22C1933A00444841 /* PollPayloadTests.swift in Sources */,
 				OBJ_279 /* TimelinesTests.swift in Sources */,
 				OBJ_280 /* ResultTests.swift in Sources */,
 			);
