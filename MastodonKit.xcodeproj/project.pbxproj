@@ -290,6 +290,34 @@
 		154E44F222AE6EDB00F9B815 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		154E44F622AE6EE200F9B815 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		155B4C8922C2B03B00C997F9 /* Reports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Reports.json; sourceTree = "<group>"; };
+		155B4C8A22C2B03B00C997F9 /* DomainBlocks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DomainBlocks.json; sourceTree = "<group>"; };
+		155B4C8B22C2B03B00C997F9 /* Empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Empty.json; sourceTree = "<group>"; };
+		155B4C8C22C2B03B00C997F9 /* Relationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Relationship.json; sourceTree = "<group>"; };
+		155B4C8D22C2B03B00C997F9 /* Emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Emoji.json; sourceTree = "<group>"; };
+		155B4C8E22C2B03B00C997F9 /* StatusWithNull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StatusWithNull.json; sourceTree = "<group>"; };
+		155B4C8F22C2B03B00C997F9 /* Report.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Report.json; sourceTree = "<group>"; };
+		155B4C9022C2B03B00C997F9 /* Mention.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Mention.json; sourceTree = "<group>"; };
+		155B4C9122C2B03B00C997F9 /* Attachment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Attachment.json; sourceTree = "<group>"; };
+		155B4C9222C2B03B00C997F9 /* Instance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Instance.json; sourceTree = "<group>"; };
+		155B4C9322C2B03B00C997F9 /* StatusWithoutNull.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StatusWithoutNull.json; sourceTree = "<group>"; };
+		155B4C9422C2B03B00C997F9 /* Results.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Results.json; sourceTree = "<group>"; };
+		155B4C9522C2B03B00C997F9 /* Account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Account.json; sourceTree = "<group>"; };
+		155B4C9622C2B03B00C997F9 /* Lists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lists.json; sourceTree = "<group>"; };
+		155B4C9722C2B03B00C997F9 /* Card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Card.json; sourceTree = "<group>"; };
+		155B4C9822C2B03B00C997F9 /* Timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Timeline.json; sourceTree = "<group>"; };
+		155B4C9922C2B03B00C997F9 /* Relationships.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Relationships.json; sourceTree = "<group>"; };
+		155B4C9A22C2B03B00C997F9 /* Notifications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notifications.json; sourceTree = "<group>"; };
+		155B4C9B22C2B03B00C997F9 /* LoginSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoginSettings.json; sourceTree = "<group>"; };
+		155B4C9C22C2B03B00C997F9 /* Context.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Context.json; sourceTree = "<group>"; };
+		155B4C9D22C2B03B00C997F9 /* Notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Notification.json; sourceTree = "<group>"; };
+		155B4C9E22C2B03B00C997F9 /* List.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = List.json; sourceTree = "<group>"; };
+		155B4C9F22C2B03B00C997F9 /* RequestError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RequestError.json; sourceTree = "<group>"; };
+		155B4CA022C2B03B00C997F9 /* Tag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tag.json; sourceTree = "<group>"; };
+		155B4CA122C2B03B00C997F9 /* ClientApplication.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ClientApplication.json; sourceTree = "<group>"; };
+		155B4CA222C2B03B00C997F9 /* Application.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Application.json; sourceTree = "<group>"; };
+		155B4CA322C2B03B00C997F9 /* Accounts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Accounts.json; sourceTree = "<group>"; };
+		155B4CA422C2B03B00C997F9 /* Poll.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Poll.json; sourceTree = "<group>"; };
 		15861D2522B8436300C37885 /* Polls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polls.swift; sourceTree = "<group>"; };
 		15861D2922B8451800C37885 /* PollsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollsTests.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +479,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		155B4C8822C2B03B00C997F9 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				155B4C8922C2B03B00C997F9 /* Reports.json */,
+				155B4C8A22C2B03B00C997F9 /* DomainBlocks.json */,
+				155B4C8B22C2B03B00C997F9 /* Empty.json */,
+				155B4C8C22C2B03B00C997F9 /* Relationship.json */,
+				155B4C8D22C2B03B00C997F9 /* Emoji.json */,
+				155B4C8E22C2B03B00C997F9 /* StatusWithNull.json */,
+				155B4C8F22C2B03B00C997F9 /* Report.json */,
+				155B4C9022C2B03B00C997F9 /* Mention.json */,
+				155B4C9122C2B03B00C997F9 /* Attachment.json */,
+				155B4C9222C2B03B00C997F9 /* Instance.json */,
+				155B4C9322C2B03B00C997F9 /* StatusWithoutNull.json */,
+				155B4C9422C2B03B00C997F9 /* Results.json */,
+				155B4C9522C2B03B00C997F9 /* Account.json */,
+				155B4C9622C2B03B00C997F9 /* Lists.json */,
+				155B4C9722C2B03B00C997F9 /* Card.json */,
+				155B4C9822C2B03B00C997F9 /* Timeline.json */,
+				155B4C9922C2B03B00C997F9 /* Relationships.json */,
+				155B4C9A22C2B03B00C997F9 /* Notifications.json */,
+				155B4C9B22C2B03B00C997F9 /* LoginSettings.json */,
+				155B4C9C22C2B03B00C997F9 /* Context.json */,
+				155B4C9D22C2B03B00C997F9 /* Notification.json */,
+				155B4C9E22C2B03B00C997F9 /* List.json */,
+				155B4C9F22C2B03B00C997F9 /* RequestError.json */,
+				155B4CA022C2B03B00C997F9 /* Tag.json */,
+				155B4CA122C2B03B00C997F9 /* ClientApplication.json */,
+				155B4CA222C2B03B00C997F9 /* Application.json */,
+				155B4CA322C2B03B00C997F9 /* Accounts.json */,
+				155B4CA422C2B03B00C997F9 /* Poll.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		OBJ_119 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +656,7 @@
 			children = (
 				OBJ_74 /* ClientTests.swift */,
 				OBJ_75 /* Fixture.swift */,
+				155B4C8822C2B03B00C997F9 /* Fixtures */,
 				OBJ_76 /* Foundation */,
 				OBJ_83 /* FunctionsTests.swift */,
 				OBJ_84 /* HTTPMethodTests.swift */,
