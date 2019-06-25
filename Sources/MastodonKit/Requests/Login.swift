@@ -24,16 +24,16 @@ public enum Login {
                               scopes: [AccessScope],
                               username: String,
                               password: String) -> Request<LoginSettings> {
-        let parameters = [
-            Parameter(name: "client_id", value: clientID),
-            Parameter(name: "client_secret", value: clientSecret),
-            Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
-            Parameter(name: "grant_type", value: "password"),
-            Parameter(name: "username", value: username),
-            Parameter(name: "password", value: password)
+        let parameters: [String: AnyEncodable] = [
+            "client_id": AnyEncodable(clientID),
+            "client_secret": AnyEncodable(clientSecret),
+            "scope": AnyEncodable(scopes.map(toString)),
+            "grant_type": AnyEncodable("password"),
+            "username": AnyEncodable(username),
+            "password": AnyEncodable(password)
         ]
 
-        let method = HTTPMethod.post(.parameters(parameters))
+        let method = HTTPMethod.post(.json(encoding: parameters))
         return Request<LoginSettings>(path: "/oauth/token", method: method)
     }
 
@@ -51,16 +51,16 @@ public enum Login {
                              scopes: [AccessScope],
                              redirectURI: String,
                              code: String) -> Request<LoginSettings> {
-        let parameters = [
-            Parameter(name: "client_id", value: clientID),
-            Parameter(name: "client_secret", value: clientSecret),
-            Parameter(name: "scope", value: scopes.map(toString).joined(separator: " ")),
-            Parameter(name: "grant_type", value: "authorization_code"),
-            Parameter(name: "redirect_uri", value: redirectURI),
-            Parameter(name: "code", value: code)
+        let parameters: [String: AnyEncodable] = [
+            "client_id": AnyEncodable(clientID),
+            "client_secret": AnyEncodable(clientSecret),
+            "scope": AnyEncodable(scopes.map(toString)),
+            "grant_type": AnyEncodable("authorization_code"),
+            "redirect_uri": AnyEncodable(redirectURI),
+            "code": AnyEncodable(code)
         ]
 
-        let method = HTTPMethod.post(.parameters(parameters))
+        let method = HTTPMethod.post(.json(encoding: parameters))
         return Request<LoginSettings>(path: "/oauth/token", method: method)
     }
 }

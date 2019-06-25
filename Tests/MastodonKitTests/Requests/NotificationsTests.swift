@@ -75,6 +75,6 @@ class NotificationsTests: XCTestCase {
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("id=42"))
+        XCTAssertEqual(payload, #"{"id":"42"}"#)
     }
 }

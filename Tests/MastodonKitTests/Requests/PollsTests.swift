@@ -35,8 +35,7 @@ class PollsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("choices[]=1"))
+        XCTAssertEqual(payload, #"{"choices":["1"]}"#)
     }
 
     func testVoteOnPollMultipleChoice() {
@@ -50,9 +49,6 @@ class PollsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("choices[]=1"))
-        XCTAssertTrue(payload.contains("choices[]=3"))
-        XCTAssertTrue(payload.contains("choices[]=4"))
+        XCTAssertEqual(payload, #"{"choices":["1","3","4"]}"#)
     }
 }

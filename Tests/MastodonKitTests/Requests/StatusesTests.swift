@@ -113,10 +113,9 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
-        XCTAssertTrue(payload.contains("visibility=public"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
     }
 
     func testCreateWithMessageAndReplyID() {
@@ -130,11 +129,10 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
-        XCTAssertTrue(payload.contains("in_reply_to_id=42"))
-        XCTAssertTrue(payload.contains("visibility=public"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
+        XCTAssertEqual(payload["in_reply_to_id"] as? String, "42")
     }
 
     func testCreateWithMessageAndMediaIDs() {
@@ -148,13 +146,10 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 5)
-        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
-        XCTAssertTrue(payload.contains("visibility=public"))
-        XCTAssertTrue(payload.contains("media_ids[]=1"))
-        XCTAssertTrue(payload.contains("media_ids[]=2"))
-        XCTAssertTrue(payload.contains("media_ids[]=42"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
+        XCTAssertEqual(payload["media_ids"] as? [String], ["1", "2", "42"])
     }
 
     func testCreateWithSensitiveMessage() {
@@ -168,11 +163,10 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
-        XCTAssertTrue(payload.contains("sensitive=true"))
-        XCTAssertTrue(payload.contains("visibility=public"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
+        XCTAssertEqual(payload["sensitive"] as? Bool, true)
     }
 
     func testCreateWithSpoilerMessage() {
@@ -186,11 +180,10 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("status=Can%27t%20believe%20it%27s%20an%20amusement%20park%20like%20Westworld%21"))
-        XCTAssertTrue(payload.contains("spoiler_text=Last%20night%27s%20GoT%21%21%21"))
-        XCTAssertTrue(payload.contains("visibility=public"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["status"] as? String, "Can't believe it's an amusement park like Westworld!")
+        XCTAssertEqual(payload["spoiler_text"] as? String, "Last night's GoT!!!")
     }
 
     func testCreateWithUnlistedMessage() {
@@ -204,10 +197,9 @@ class StatusesTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 2)
-        XCTAssertTrue(payload.contains("status=The%20most%20awesome%20status%20message%20ever%21"))
-        XCTAssertTrue(payload.contains("visibility=unlisted"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["visibility"] as? String, "unlisted")
+        XCTAssertEqual(payload["status"] as? String, "The most awesome status message ever!")
     }
 
     func testDelete() {

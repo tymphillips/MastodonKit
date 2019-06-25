@@ -38,8 +38,7 @@ public enum Lists {
     /// - Parameter title: The title of the list.
     /// - Returns: Request for `List`.
     public static func create(title: String) -> Request<List> {
-        let parameter = [Parameter(name: "title", value: title)]
-        let method = HTTPMethod.post(.parameters(parameter))
+        let method = HTTPMethod.post(.json(encoding: ["title": title]))
 
         return Request<List>(path: "/api/v1/lists", method: method)
     }
@@ -51,8 +50,7 @@ public enum Lists {
     ///   - title: The title of the list.
     /// - Returns: Request for `List`.
     public static func update(id: String, title: String) -> Request<List> {
-        let parameter = [Parameter(name: "title", value: title)]
-        let method = HTTPMethod.put(.parameters(parameter))
+        let method = HTTPMethod.put(.json(encoding: ["title": title]))
 
         return Request<List>(path: "/api/v1/lists/\(id)", method: method)
     }
@@ -72,8 +70,7 @@ public enum Lists {
     ///   - id: The list ID>
     /// - Returns: Request for `Empty`.
     public static func add(accountIDs: [String], toList id: String) -> Request<Empty> {
-        let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
-        let method = HTTPMethod.post(.parameters(parameter))
+        let method = HTTPMethod.post(.json(encoding: ["account_ids": accountIDs]))
 
         return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: method)
     }
@@ -85,8 +82,7 @@ public enum Lists {
     ///   - id: The list ID>
     /// - Returns: Request for `Empty`.
     public static func remove(accountIDs: [String], fromList id: String) -> Request<Empty> {
-        let parameter = accountIDs.map(toArrayOfParameters(withName: "account_ids"))
-        let method = HTTPMethod.delete(.parameters(parameter))
+        let method = HTTPMethod.delete(.json(encoding: ["account_ids": accountIDs]))
 
         return Request<Empty>(path: "/api/v1/lists/\(id)/accounts", method: method)
     }

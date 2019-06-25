@@ -35,12 +35,10 @@ class ReportsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 5)
-        XCTAssertTrue(payload.contains("account_id=40"))
-        XCTAssertTrue(payload.contains("status_ids[]=4"))
-        XCTAssertTrue(payload.contains("status_ids[]=2"))
-        XCTAssertTrue(payload.contains("status_ids[]=42"))
-        XCTAssertTrue(payload.contains("comment=Westworld%20Spoiler%21%21%21"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["account_id"] as? String, "40")
+        XCTAssertEqual(payload["status_ids"] as? [String], ["4", "2", "42"])
+        XCTAssertEqual(payload["comment"] as? String, "Westworld Spoiler!!!")
+
     }
 }

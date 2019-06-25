@@ -26,8 +26,7 @@ public enum DomainBlocks {
     /// - Parameter domain: The domain to block.
     /// - Returns: Request for `Empty`.
     public static func block(domain: String) -> Request<Empty> {
-        let parameter = [Parameter(name: "domain", value: domain)]
-        let method = HTTPMethod.post(.parameters(parameter))
+        let method = HTTPMethod.post(.json(encoding: ["domain": domain]))
 
         return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }
@@ -37,8 +36,7 @@ public enum DomainBlocks {
     /// - Parameter domain: The domain to unblock.
     /// - Returns: Request for `Empty`.
     public static func unblock(domain: String) -> Request<Empty> {
-        let parameter = [Parameter(name: "domain", value: domain)]
-        let method = HTTPMethod.delete(.parameters(parameter))
+        let method = HTTPMethod.delete(.json(encoding: ["domain": domain]))
 
         return Request<Empty>(path: "/api/v1/domain_blocks", method: method)
     }

@@ -228,8 +228,7 @@ class AccountsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("uri=username%40domain"))
+        XCTAssertEqual(payload, #"{"uri":"username@domain"}"#)
     }
 
     func testBlock() {

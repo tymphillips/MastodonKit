@@ -41,8 +41,7 @@ public enum Notifications {
     /// - Parameter id: The notification id.
     /// - Returns: Request for `Empty`.
     public static func dismiss(id: String) -> Request<Empty> {
-        let parameter = [Parameter(name: "id", value: String(id))]
-        let method = HTTPMethod.post(.parameters(parameter))
+        let method = HTTPMethod.post(.json(encoding: ["id": id]))
 
         return Request<Empty>(path: "/api/v1/notifications/dismiss", method: method)
     }

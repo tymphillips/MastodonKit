@@ -58,8 +58,7 @@ class ListsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("title=awesome%20list"))
+        XCTAssertEqual(payload, #"{"title":"awesome list"}"#)
     }
 
     func testUpdate() {
@@ -75,7 +74,7 @@ class ListsTests: XCTestCase {
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("title=awesome%20title"))
+        XCTAssertEqual(payload, #"{"title":"awesome title"}"#)
     }
 
     func testDelete() {
@@ -102,10 +101,7 @@ class ListsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("account_ids[]=1"))
-        XCTAssertTrue(payload.contains("account_ids[]=2"))
-        XCTAssertTrue(payload.contains("account_ids[]=3"))
+        XCTAssertEqual(payload, #"{"account_ids":["1","2","3"]}"#)
     }
 
     func testRemove() {
@@ -120,9 +116,6 @@ class ListsTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("account_ids[]=1"))
-        XCTAssertTrue(payload.contains("account_ids[]=2"))
-        XCTAssertTrue(payload.contains("account_ids[]=3"))
+        XCTAssertEqual(payload, #"{"account_ids":["1","2","3"]}"#)
     }
 }

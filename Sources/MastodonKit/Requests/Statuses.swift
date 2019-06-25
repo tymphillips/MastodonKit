@@ -76,15 +76,16 @@ public enum Statuses {
                               sensitive: Bool? = nil,
                               spoilerText: String? = nil,
                               visibility: Visibility = .public) -> Request<Status> {
-        let parameters = [
-            Parameter(name: "status", value: status),
-            Parameter(name: "in_reply_to_id", value: replyToID),
-            Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
-            Parameter(name: "spoiler_text", value: spoilerText),
-            Parameter(name: "visibility", value: visibility.rawValue)
-            ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
+        let parameters: [String: AnyEncodable?] = [
+            "status": AnyEncodable(status),
+            "in_reply_to_id": replyToID.map { AnyEncodable($0) },
+            "sensitive": (sensitive ?? false) ? AnyEncodable(true) : nil,
+            "spoiler_text": spoilerText.map { AnyEncodable($0) },
+            "visibility": AnyEncodable(visibility.rawValue),
+            "media_ids": mediaIDs.isEmpty ? nil : AnyEncodable(mediaIDs)
+        ]
 
-        let method = HTTPMethod.post(.parameters(parameters))
+        let method = HTTPMethod.post(.json(encoding: parameters.compactMapValues { $0 }))
         return Request<Status>(path: "/api/v1/statuses", method: method)
     }
 

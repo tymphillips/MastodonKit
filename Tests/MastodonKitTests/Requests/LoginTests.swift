@@ -20,14 +20,13 @@ class LoginTests: XCTestCase {
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
-        XCTAssertTrue(payload.contains("client_id=client%20id"))
-        XCTAssertTrue(payload.contains("client_secret=client%20secret"))
-        XCTAssertTrue(payload.contains("scope=read%20write"))
-        XCTAssertTrue(payload.contains("grant_type=password"))
-        XCTAssertTrue(payload.contains("username=foo"))
-        XCTAssertTrue(payload.contains("password=123"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["username"] as? String, "foo")
+        XCTAssertEqual(payload["scope"] as? [String], ["read", "write"])
+        XCTAssertEqual(payload["password"] as? String, "123")
+        XCTAssertEqual(payload["client_id"] as? String, "client id")
+        XCTAssertEqual(payload["client_secret"] as? String, "client secret")
+        XCTAssertEqual(payload["grant_type"] as? String, "password")
     }
 
     func testOAuthLogin() {
@@ -40,13 +39,12 @@ class LoginTests: XCTestCase {
         XCTAssertEqual(request.method.name, "POST")
         XCTAssertNil(request.method.queryItems)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 6)
-        XCTAssertTrue(payload.contains("client_id=client%20id"))
-        XCTAssertTrue(payload.contains("client_secret=client%20secret"))
-        XCTAssertTrue(payload.contains("scope=read%20write"))
-        XCTAssertTrue(payload.contains("grant_type=authorization_code"))
-        XCTAssertTrue(payload.contains("redirect_uri=foo%3A//oauth"))
-        XCTAssertTrue(payload.contains("code=123"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["client_id"] as? String, "client id")
+        XCTAssertEqual(payload["client_secret"] as? String, "client secret")
+        XCTAssertEqual(payload["scope"] as? [String], ["read", "write"])
+        XCTAssertEqual(payload["grant_type"] as? String, "authorization_code")
+        XCTAssertEqual(payload["redirect_uri"] as? String, "foo://oauth")
+        XCTAssertEqual(payload["code"] as? String, "123")
     }
 }

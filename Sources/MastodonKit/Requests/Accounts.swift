@@ -131,9 +131,7 @@ public enum Accounts {
     /// - Parameter uri: The 'username@domain' of the remote user to follow.
     /// - Returns: Request for `Account`.
     public static func remoteFollow(uri: String) -> Request<Account> {
-        let parameter = [Parameter(name: "uri", value: uri)]
-        let method = HTTPMethod.post(.parameters(parameter))
-
+        let method = HTTPMethod.post(.json(encoding: ["uri": uri]))
         return Request<Account>(path: "/api/v1/follows", method: method)
     }
 

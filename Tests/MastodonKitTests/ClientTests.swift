@@ -206,11 +206,10 @@ class ClientRunWithPostAndHTTPBodyTests: XCTestCase {
         XCTAssertEqual(request?.httpMethod, "POST")
         XCTAssertNil(request?.url?.query)
 
-        let httyBodyString = String(data: request!.httpBody!, encoding: .utf8)!
-
-        XCTAssertTrue(httyBodyString.contains("status=Hi%20there%21"))
-        XCTAssertTrue(httyBodyString.contains("visibility=public"))
-        XCTAssertTrue(httyBodyString.contains("in_reply_to_id=42"))
+        let payload = try! JSONSerialization.jsonObject(with: request!.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["status"] as? String, "Hi there!")
+        XCTAssertEqual(payload["visibility"] as? String, "public")
+        XCTAssertEqual(payload["in_reply_to_id"] as? String, "42")
     }
 }
 

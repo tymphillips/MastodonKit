@@ -21,11 +21,11 @@ class ClientsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
-        XCTAssertTrue(payload.contains("scopes="))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["client_name"] as? String, "MastodonKitTestApplication")
+        XCTAssertEqual(payload["redirect_uris"] as? String, "urn:ietf:wg:oauth:2.0:oob")
+        XCTAssertNil(payload["scopes"])
+        XCTAssertNil(payload["website"])
     }
 
     func testRegisterApplicationWithRedirectURI() {
@@ -39,11 +39,11 @@ class ClientsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 3)
-        XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=my-awesome-app%3A//"))
-        XCTAssertTrue(payload.contains("scopes=read%20follow"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["client_name"] as? String, "MastodonKitTestApplication")
+        XCTAssertEqual(payload["redirect_uris"] as? String, "my-awesome-app://")
+        XCTAssertEqual(payload["scopes"] as? [String], ["read", "follow"])
+        XCTAssertNil(payload["website"])
     }
 
     func testRegisterApplicationWithStatusAndWebsite() {
@@ -57,11 +57,10 @@ class ClientsTests: XCTestCase {
         XCTAssertNil(request.method.queryItems)
         XCTAssertNotNil(request.method.httpBody)
 
-        let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 4)
-        XCTAssertTrue(payload.contains("client_name=MastodonKitTestApplication"))
-        XCTAssertTrue(payload.contains("redirect_uris=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob"))
-        XCTAssertTrue(payload.contains("scopes=read%20write%20follow"))
-        XCTAssertTrue(payload.contains("website=https%3A//github.com/ornithocoder/MastodonKit"))
+        let payload = try! JSONSerialization.jsonObject(with: request.method.httpBody!, options: []) as! NSDictionary
+        XCTAssertEqual(payload["client_name"] as? String, "MastodonKitTestApplication")
+        XCTAssertEqual(payload["redirect_uris"] as? String, "urn:ietf:wg:oauth:2.0:oob")
+        XCTAssertEqual(payload["scopes"] as? [String], ["read", "write", "follow"])
+        XCTAssertEqual(payload["website"] as? String, "https://github.com/ornithocoder/MastodonKit")
     }
 }

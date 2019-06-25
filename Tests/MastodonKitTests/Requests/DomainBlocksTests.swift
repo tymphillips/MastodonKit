@@ -48,8 +48,7 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("domain=foobar"))
+        XCTAssertEqual(payload, #"{"domain":"foobar"}"#)
     }
 
     func testUnlock() {
@@ -64,7 +63,6 @@ class DomainBlocksTests: XCTestCase {
         XCTAssertNotNil(request.method.httpBody)
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
-        XCTAssertEqual(payload.components(separatedBy: "&").count, 1)
-        XCTAssertTrue(payload.contains("domain=foobar"))
+        XCTAssertEqual(payload, #"{"domain":"foobar"}"#)
     }
 }

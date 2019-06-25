@@ -25,12 +25,13 @@ public enum Reports {
     ///   - reason: A comment to associate with the report.
     /// - Returns: Request for `Report`.
     public static func report(accountID: String, statusIDs: [String], reason: String) -> Request<Report> {
-        let parameters = [
-            Parameter(name: "account_id", value: accountID),
-            Parameter(name: "comment", value: reason)
-            ] + statusIDs.map(toArrayOfParameters(withName: "status_ids"))
+        let parameters: [String: AnyEncodable] = [
+            "account_id": AnyEncodable(accountID),
+            "comment": AnyEncodable(reason),
+            "status_ids": AnyEncodable(statusIDs)
+        ]
 
-        let method = HTTPMethod.post(.parameters(parameters))
+        let method = HTTPMethod.post(.json(encoding: parameters))
         return Request<Report>(path: "/api/v1/reports", method: method)
     }
 }

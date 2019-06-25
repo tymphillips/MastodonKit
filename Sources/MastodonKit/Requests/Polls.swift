@@ -15,8 +15,7 @@ public enum Polls {
     }
 
     public static func vote(pollID: String, optionIndices: IndexSet) -> Request<Poll> {
-        let parameters = optionIndices.map(toArrayOfParameters(withName: "choices"))
-        let method = HTTPMethod.post(.parameters(parameters))
+        let method = HTTPMethod.post(.json(encoding: ["choices": optionIndices.map { "\($0)" }]))
         return Request<Poll>(path: "/api/v1/polls/\(pollID)/votes", method: method)
     }
 }
