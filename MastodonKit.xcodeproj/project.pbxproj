@@ -23,6 +23,9 @@
 		154E44F722AE6EE200F9B815 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E44F622AE6EE200F9B815 /* Filter.swift */; };
 		154E44F822AE6EE200F9B815 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E44F622AE6EE200F9B815 /* Filter.swift */; };
 		154E44F922AE6EE200F9B815 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154E44F622AE6EE200F9B815 /* Filter.swift */; };
+		155B4C8122C28A9C00C997F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */; };
+		155B4C8222C28A9C00C997F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */; };
+		155B4C8322C28A9C00C997F9 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */; };
 		15861D2622B8436300C37885 /* Polls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2522B8436300C37885 /* Polls.swift */; };
 		15861D2722B8436300C37885 /* Polls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2522B8436300C37885 /* Polls.swift */; };
 		15861D2822B8436300C37885 /* Polls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15861D2522B8436300C37885 /* Polls.swift */; };
@@ -286,6 +289,7 @@
 		151DF8B3222DFF8600DAEA7A /* PollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollTests.swift; sourceTree = "<group>"; };
 		154E44F222AE6EDB00F9B815 /* Filters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		154E44F622AE6EE200F9B815 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		15861D2522B8436300C37885 /* Polls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polls.swift; sourceTree = "<group>"; };
 		15861D2922B8451800C37885 /* PollsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollsTests.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -474,6 +478,7 @@
 		OBJ_12 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				155B4C8022C28A9C00C997F9 /* AnyEncodable.swift */,
 				OBJ_13 /* CharacterSet.swift */,
 				OBJ_14 /* Data.swift */,
 				OBJ_15 /* DateFormatter.swift */,
@@ -883,6 +888,7 @@
 				62864F46213AF68900823C8A /* Notifications.swift in Sources */,
 				151DF8B2222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				15861D2822B8436300C37885 /* Polls.swift in Sources */,
+				155B4C8322C28A9C00C997F9 /* AnyEncodable.swift in Sources */,
 				62864F47213AF68900823C8A /* Reports.swift in Sources */,
 				62864F48213AF68900823C8A /* Search.swift in Sources */,
 				62864F49213AF68900823C8A /* Statuses.swift in Sources */,
@@ -956,6 +962,7 @@
 				629A4B04213AF5B100A6386E /* Notifications.swift in Sources */,
 				151DF8B1222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				15861D2722B8436300C37885 /* Polls.swift in Sources */,
+				155B4C8222C28A9C00C997F9 /* AnyEncodable.swift in Sources */,
 				629A4B05213AF5B100A6386E /* Reports.swift in Sources */,
 				629A4B06213AF5B100A6386E /* Search.swift in Sources */,
 				629A4B07213AF5B100A6386E /* Statuses.swift in Sources */,
@@ -1029,6 +1036,7 @@
 				OBJ_199 /* Notifications.swift in Sources */,
 				151DF8B0222DDF4D00DAEA7A /* PollOption.swift in Sources */,
 				15861D2622B8436300C37885 /* Polls.swift in Sources */,
+				155B4C8122C28A9C00C997F9 /* AnyEncodable.swift in Sources */,
 				OBJ_200 /* Reports.swift in Sources */,
 				OBJ_201 /* Search.swift in Sources */,
 				OBJ_202 /* Statuses.swift in Sources */,

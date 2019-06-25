@@ -11,8 +11,15 @@ import Foundation
 enum Payload {
     case parameters([Parameter]?)
     case form([FormParameter]?)
+    case json(AnyEncodable)
     case media(MediaAttachment?)
     case empty
+}
+
+extension Payload {
+    static func json<T: Encodable>(encoding object: T) -> Payload {
+        return .json(AnyEncodable(object))
+    }
 }
 
 extension Payload {
@@ -21,7 +28,7 @@ extension Payload {
     var items: [URLQueryItem]? {
         switch self {
         case .parameters(let parameters): return parameters?.compactMap(toQueryItem)
-        case .form, .media, .empty: return nil
+        case .form, .media, .empty, .json: return nil
         }
     }
 
@@ -35,6 +42,11 @@ extension Payload {
                 .reduce(Data(), +)
                 .appending("--\(Payload.formBoundary)--")
 
+        case .json(let encodable):
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.dateEncodingStrategy = .formatted(.mastodonFormatter)
+            return try? jsonEncoder.encode(encodable)
+
         case .media(let mediaAttachment):
             return mediaAttachment.flatMap(Data.init)
 
@@ -47,6 +59,9 @@ extension Payload {
         switch self {
         case .parameters(.some):
             return "application/x-www-form-urlencoded; charset=utf-8"
+
+        case .json:
+            return "application/json"
 
         case .media(.some), .form(.some):
             return "multipart/form-data; boundary=\(Payload.formBoundary)"
@@ -66,6 +81,10 @@ extension Payload: Codable {
         case .parameters(let parameters):
             try container.encode("parameters", forKey: .type)
             try container.encodeIfPresent(parameters, forKey: .parameters)
+
+        case .json(let encodable):
+            try container.encode("json", forKey: .type)
+            try container.encode(encodable, forKey: .parameters)
 
         case .form:
             throw EncodingError.invalidValue(self, EncodingError.Context(codingPath: [CodingKeys.type],
@@ -91,6 +110,9 @@ extension Payload: Codable {
 
         case "media":
             self = .media(try container.decodeIfPresent(MediaAttachment.self, forKey: .media))
+
+        case "json":
+            self = .json(AnyEncodable(try container.decode(Data.self, forKey: .parameters)))
 
         case "empty":
             self = .empty
