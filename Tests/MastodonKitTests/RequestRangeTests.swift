@@ -20,6 +20,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "42")
     }
 
     func testRangeWithMaxValueAndLimit() {
@@ -32,6 +33,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "42")
     }
 
     func testRangeWithMinValue() {
@@ -44,6 +46,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "42")
     }
 
     func testRangeWithMinValueAndLimit() {
@@ -56,6 +59,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedMaxID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "42")
     }
 
     func testRangeWithSinceValue() {
@@ -68,6 +72,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedSinceID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "80")
     }
 
     func testRangeWithMaxSinceAndLimit() {
@@ -80,6 +85,7 @@ class RequestRangeTests: XCTestCase {
         XCTAssertEqual(parameters?.count, 2)
         XCTAssertTrue(parameters!.contains(expectedSinceID))
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertEqual(range.id, "80")
     }
 
     func testRangeWithLimitOnly() {
@@ -90,6 +96,7 @@ class RequestRangeTests: XCTestCase {
 
         XCTAssertEqual(parameters?.count, 1)
         XCTAssertTrue(parameters!.contains(expectedLimit))
+        XCTAssertNil(range.id)
     }
 
     func testRangeWithDefault() {

@@ -45,6 +45,8 @@ class AccountTests: XCTestCase {
         let parsed = try? [Account].decode(data: fixture)
 
         XCTAssertEqual(parsed?.count, 2)
+        XCTAssertEqual(parsed?.first?.emojis.isEmpty, true)
+        XCTAssertEqual(parsed?.last?.emojis.isEmpty, true)
     }
 
     func testAccountsWithInvalidData() {

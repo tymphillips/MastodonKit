@@ -38,7 +38,7 @@ class AccountsTests: XCTestCase {
         let avatar = MediaAttachment.jpeg(Data(count: 8))
         let header = MediaAttachment.png(Data(count: 8))
 
-        let request = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: avatar, header: header)
+        let request = Accounts.updateCurrentUser(displayName: "Ornithologist Coder", note: "Creator of MastodonKit", avatar: avatar, header: header, locked: true, bot: true, fieldsAttributes: [MetadataField(name: "Hey", value: "Ho!")])
 
         // Endpoint
         XCTAssertEqual(request.path, "/api/v1/accounts/update_credentials")
@@ -50,7 +50,7 @@ class AccountsTests: XCTestCase {
 
         let payload = String(data: request.method.httpBody!, encoding: .utf8)!
         XCTAssertEqual(payload, """
---xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"display_name\"\r\n\r\nOrnithologist Coder\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"note\"\r\n\r\nCreator of MastodonKit\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"avatar\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"header\"; filename=\"file.png\"\r\nContent-Type: image/png\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54--
+--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"display_name\"\r\n\r\nOrnithologist Coder\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"note\"\r\n\r\nCreator of MastodonKit\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"avatar\"; filename=\"file.jpg\"\r\nContent-Type: image/jpg\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"header\"; filename=\"file.png\"\r\nContent-Type: image/png\r\n\r\n\0\0\0\0\0\0\0\0\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"locked\"\r\n\r\ntrue\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"bot\"\r\n\r\ntrue\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"fields_attributes[0][name]\"\r\n\r\nHey\r\n--xAb54_MastodonKit_xAb54\r\nContent-Disposition: form-data; name=\"fields_attributes[0][value]\"\r\n\r\nHo!\r\n--xAb54_MastodonKit_xAb54--
 """)
     }
 
