@@ -20,6 +20,8 @@ public enum NotificationType: Codable, RawRepresentable, Equatable {
     case favourite
     /// The user has a new follower.
     case follow
+    /// A poll has ended
+    case poll
 
     /// An unknown notification type
     case other(String)
@@ -31,6 +33,7 @@ public enum NotificationType: Codable, RawRepresentable, Equatable {
         case "reblog": self = .reblog
         case "favourite": self = .favourite
         case "follow": self = .follow
+        case "poll": self = .poll
         case let other: self = .other(other)
         }
     }
@@ -41,6 +44,7 @@ public enum NotificationType: Codable, RawRepresentable, Equatable {
         case "reblog": self = .reblog
         case "favourite": self = .favourite
         case "follow": self = .follow
+        case "poll": self = .poll
         case let other: self = .other(other)
         }
     }
@@ -52,6 +56,7 @@ public enum NotificationType: Codable, RawRepresentable, Equatable {
         case .reblog: try container.encode("reblog")
         case .favourite: try container.encode("favourite")
         case .follow: try container.encode("follow")
+        case .poll: try container.encode("poll")
         case .other(let other): try container.encode(other)
         }
     }
@@ -62,6 +67,7 @@ public enum NotificationType: Codable, RawRepresentable, Equatable {
         case .reblog: return "reblog"
         case .favourite: return "favourite"
         case .follow: return "follow"
+        case .poll: return "poll"
         case .other(let other): return other
         }
     }
