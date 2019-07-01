@@ -14,5 +14,5 @@ public class Results: Codable {
     /// An array of matchhed statuses.
     public let statuses: [Status]
     /// An array of matched hashtags, as strings.
-    public let hashtags: [Hashtag]
+    public let hashtags: [Tag]
 }
