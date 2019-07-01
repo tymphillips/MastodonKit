@@ -12,7 +12,7 @@ public enum Result<Model> {
     /// Success wraps a model and an optional pagination
     case success(Model, Pagination?)
     /// Failure wraps an ErrorType
-    case failure(Error)
+    case failure(ClientError)
 }
 
 public extension Result {

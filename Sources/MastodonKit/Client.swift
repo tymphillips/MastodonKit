@@ -36,7 +36,7 @@ public struct Client: ClientType {
 
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(.genericError(error as NSError)))
                 return
             }
 
@@ -51,7 +51,7 @@ public struct Client: ClientType {
             else {
                 let mastodonError = try? MastodonError.decode(data: data)
                 let error: ClientError = mastodonError.map { .mastodonError($0.description) }
-                                        ?? .genericError(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1)
+                                        ?? .badStatus(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1)
                 completion(.failure(error))
                 return
             }
