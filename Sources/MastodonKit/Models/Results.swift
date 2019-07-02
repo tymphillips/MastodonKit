@@ -13,6 +13,6 @@ public class Results: Codable {
     public let accounts: [Account]
     /// An array of matchhed statuses.
     public let statuses: [Status]
-    /// An array of matched hashtags, as strings.
+    /// An array of matched hashtags.
     public let hashtags: [Tag]
 }
