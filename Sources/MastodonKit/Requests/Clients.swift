@@ -22,14 +22,14 @@ public enum Clients {
                                 redirectURI: String = "urn:ietf:wg:oauth:2.0:oob",
                                 scopes: [AccessScope],
                                 website: String? = nil) -> Request<ClientApplication> {
-        let parameters: [String: AnyEncodable?] = [
-            "client_name": AnyEncodable(clientName),
-            "redirect_uris": AnyEncodable(redirectURI),
-            "website": website.map { AnyEncodable($0) },
-            "scopes": scopes.isEmpty ? nil : AnyEncodable(scopes)
+        let parameters = [
+            Parameter(name: "client_name", value: clientName),
+            Parameter(name: "redirect_uris", value: redirectURI),
+            Parameter(name: "website", value: website),
+            Parameter(name: "scopes", value: scopes.map(toString).joined(separator: " "))
         ]
 
-        let method = HTTPMethod.post(.json(encoding: parameters.compactMapValues { $0 }))
+        let method = HTTPMethod.post(.parameters(parameters))
         return Request<ClientApplication>(path: "/api/v1/apps", method: method)
     }
 }
