@@ -29,6 +29,19 @@ public class Instance: Codable {
     public let urls: InstanceURLs?
     /// The account of the instance administrator.
     public let contactAccount: Account?
+
+    enum CodingKeys: String, CodingKey {
+        case uri
+        case title
+        case description
+        case email
+        case version
+        case thumbnail
+        case stats
+        case languages
+        case urls
+        case contactAccount = "contact_account"
+    }
 }
 
 public struct InstanceStats: Codable {
