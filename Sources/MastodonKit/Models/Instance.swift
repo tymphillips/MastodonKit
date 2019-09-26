@@ -25,6 +25,10 @@ public class Instance: Codable {
     public let stats: InstanceStats?
     /// List of "official" languages used in this instance (as of version 2.3).
     public let languages: [String]?
+    /// List of URLs the instance exposes.
+    public let urls: InstanceURLs?
+    /// The account of the instance administrator.
+    public let contactAccount: Account?
 }
 
 public struct InstanceStats: Codable {
@@ -39,5 +43,14 @@ public struct InstanceStats: Codable {
         case userCount = "user_count"
         case statusCount = "status_count"
         case domainCount = "domain_count"
+    }
+}
+
+public struct InstanceURLs: Codable {
+    /// URL used for the streaming API.
+    public let streaming: URL?
+
+    enum CodingKeys: String, CodingKey {
+        case streaming = "streaming_api"
     }
 }
