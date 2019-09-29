@@ -33,7 +33,7 @@ public extension Result {
     }
 
     /// Convenience getter for the error.
-    var error: Error? {
+    var error: ClientError? {
         switch self {
         case .success: return nil
         case .failure(let error): return error
