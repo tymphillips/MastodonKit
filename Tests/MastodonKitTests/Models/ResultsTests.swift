@@ -16,7 +16,7 @@ class ResultsTests: XCTestCase {
 
         XCTAssertEqual(results?.accounts.count, 1)
         XCTAssertEqual(results?.statuses.count, 1)
-        XCTAssertEqual((results?.hashtags)!, ["one", "two", "three"])
+        XCTAssertEqual(results!.hashtags.map { $0.name }, ["banana", "banana_dance", "banana_hammock"])
     }
 
     func testResultsWithInvalidData() {

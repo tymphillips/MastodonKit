@@ -63,8 +63,128 @@
         }
     ],
     "hashtags": [
-        "one",
-        "two",
-        "three"
+        {
+            "name": "banana",
+            "url": "https://mastodon.technology/tags/banana",
+            "history": [
+                {
+                    "day": "1570060800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569974400",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569888000",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569801600",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569715200",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569628800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569542400",
+                    "uses": "0",
+                    "accounts": "0"
+                }
+            ]
+        },
+        {
+            "name": "banana_dance",
+            "url": "https://mastodon.technology/tags/banana_dance",
+            "history": [
+                {
+                    "day": "1570060800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569974400",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569888000",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569801600",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569715200",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569628800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569542400",
+                    "uses": "0",
+                    "accounts": "0"
+                }
+            ]
+        },
+        {
+            "name": "banana_hammock",
+            "url": "https://mastodon.technology/tags/banana_hammock",
+            "history": [
+                {
+                    "day": "1570060800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569974400",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569888000",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569801600",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569715200",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569628800",
+                    "uses": "0",
+                    "accounts": "0"
+                },
+                {
+                    "day": "1569542400",
+                    "uses": "0",
+                    "accounts": "0"
+                }
+            ]
+        }
     ]
 }
