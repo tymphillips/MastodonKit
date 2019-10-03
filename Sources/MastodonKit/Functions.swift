@@ -80,3 +80,8 @@ func toAccessScope(string: String) -> AccessScope? {
 protocol StringDictionaryConvertible {
     var dictionaryValue: [(key: String, value: String)] { get }
 }
+
+func localizedString(_ key: String, _ parameters: Any...) -> String {
+    let formatString = Bundle(for: MastodonError.self).localizedString(forKey: key, value: nil, table: nil)
+    return String(format: formatString, arguments: parameters.map { "\($0)" })
+}

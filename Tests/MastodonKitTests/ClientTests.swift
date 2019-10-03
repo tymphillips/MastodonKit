@@ -83,7 +83,7 @@ class ClientRunTests: XCTestCase {
 
         mockSession.lastCompletionHandler?(nil, nil, mockError)
 
-        XCTAssertEqual(result?.error?.localizedDescription, mockError.localizedDescription)
+        XCTAssertEqual(result?.error?.localizedDescription, "Networking error: \(mockError.localizedDescription)")
     }
 
     func testDataTaskCompletionBlockWithMissingData() {
