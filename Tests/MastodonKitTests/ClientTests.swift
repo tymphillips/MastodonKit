@@ -25,7 +25,7 @@ class ClientInitializationTests: XCTestCase {
     }
 
     func testClientAccessTokenConfiguration() {
-        var client = Client(baseURL: "https://my.mastodon.instance/")
+        let client = Client(baseURL: "https://my.mastodon.instance/")
 
         XCTAssertNil(client.accessToken)
 
@@ -96,7 +96,7 @@ class ClientRunTests: XCTestCase {
         let fixture = try! Fixture.load(fileName: "Fixtures/RequestError.json")
         let response = HTTPURLResponse(
             url: URL(string: "https://my.mastodon.instance/api/v1/timelines/home")!,
-            statusCode: 401,
+            statusCode: 403,
             httpVersion: nil,
             headerFields: nil)
 
@@ -151,6 +151,24 @@ class ClientRunTests: XCTestCase {
 
         XCTAssertEqual(result?.value?.count, 2)
         XCTAssertNotNil(result?.pagination)
+    }
+
+    func testNotFoundResponse() {
+        let mockResponse = HTTPURLResponse(url: mockSession.lastRequest!.url!, statusCode: 404,
+                                           httpVersion: nil, headerFields: nil)
+
+        mockSession.lastCompletionHandler?(Data(), mockResponse, nil)
+
+        XCTAssertEqual(result?.error?.localizedDescription, ClientError.badStatus(statusCode: 404).localizedDescription)
+    }
+
+    func testUnauthorizedResponse() {
+        let mockResponse = HTTPURLResponse(url: mockSession.lastRequest!.url!, statusCode: 401,
+                                           httpVersion: nil, headerFields: nil)
+
+        mockSession.lastCompletionHandler?(Data(), mockResponse, nil)
+
+        XCTAssertEqual(result?.error?.localizedDescription, ClientError.unauthorized.localizedDescription)
     }
 }
 
@@ -237,5 +255,120 @@ class ClientRunWithGetAndQueryItemsTests: XCTestCase {
         XCTAssertEqual(request?.httpMethod, "GET")
         XCTAssertNotNil(request?.url?.query)
         XCTAssertNil(request!.httpBody)
+    }
+}
+
+class ClientDelegateTests: XCTestCase {
+
+    let mockSession = MockURLSession()
+    var result: Result<[Status]>?
+    let delegateMock = MockClientDelegate()
+    var client: ClientType?
+    var future: FutureTask?
+
+    override func setUp() {
+        super.setUp()
+
+        let client = Client(baseURL: "https://my.mastodon.instance/",
+                            accessToken: "foo",
+                            session: mockSession,
+                            delegate: delegateMock)
+
+        self.client = client
+    }
+
+    func testUnauthorizedErrorDelegateCall() {
+
+        future = client!.run(Timelines.home(), resumeImmediatelly: true) { result in
+            self.result = result
+        }
+
+        let expectation = XCTestExpectation(description: "Delegate method should have been called")
+
+        delegateMock.producedUnauthorizedErrorHandler = { [unowned self] _ in
+            self.delegateMock.isRequestingNewAuthToken = true
+            expectation.fulfill()
+        }
+
+        mockSession.lastCompletionHandler?(Data(), makeUnauthorizedResponse(), nil)
+
+        wait(for: [expectation], timeout: 0.05)
+    }
+
+    func testUnauthorizedErrorAutomaticRetryCall() {
+
+        future = client!.run(Timelines.home(), resumeImmediatelly: true) { result in
+            self.result = result
+        }
+
+        delegateMock.producedUnauthorizedErrorHandler = { [unowned self] _ in
+            self.delegateMock.isRequestingNewAuthToken = true
+
+            DispatchQueue.main.async {
+                self.delegateMock.isRequestingNewAuthToken = false
+                self.client?.accessToken = "baz"
+            }
+        }
+
+        mockSession.lastCompletionHandler?(Data(), makeUnauthorizedResponse(), nil)
+        mockSession.lastReturnedDataTask = nil
+
+        let expectation = XCTestExpectation(description: "Update token expectation")
+
+        future?.task = nil
+        future?.resolutionHandler = { _ in
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 0.05)
+
+        XCTAssertNotNil(mockSession.lastReturnedDataTask)
+    }
+
+    func testUnauthorizedErrorAutomaticRetryForMultipleRequestsCall() {
+
+        var client = self.client!
+
+        delegateMock.producedUnauthorizedErrorHandler = { [unowned self] _ in
+            self.delegateMock.isRequestingNewAuthToken = true
+        }
+
+        let timelineExpectation = expectation(description: "Timeline should have been fetched")
+        client.run(Timelines.home()) { result in
+            XCTAssertFalse(result.isError)
+            timelineExpectation.fulfill()
+        }
+        let timelinesCompletionHandler = mockSession.lastCompletionHandler
+
+        timelinesCompletionHandler?(Data(), makeUnauthorizedResponse(), nil)
+
+        let userExpectation = expectation(description: "Timeline should have been fetched")
+        client.run(Accounts.currentUser()) { result in
+            XCTAssertFalse(result.isError)
+            userExpectation.fulfill()
+        }
+
+        let timelineFixture = try! Fixture.load(fileName: "Fixtures/Timeline.json")
+        let accountFixture = try! Fixture.load(fileName: "Fixtures/Account.json")
+
+        mockSession.automaticCompletionResponses = [
+            (timelineFixture, makeOKResponse(), nil),
+            (accountFixture, makeOKResponse(), nil)
+        ]
+
+        delegateMock.isRequestingNewAuthToken = false
+        client.accessToken = "baz"
+
+        wait(for: [timelineExpectation, userExpectation], timeout: 1)
+    }
+
+    private func makeUnauthorizedResponse() -> HTTPURLResponse {
+        return HTTPURLResponse(url: mockSession.lastRequest!.url!, statusCode: 401,
+                               httpVersion: nil, headerFields: nil)!
+    }
+
+    private func makeOKResponse() -> HTTPURLResponse {
+        return HTTPURLResponse(url: mockSession.lastRequest!.url!, statusCode: 200,
+                               httpVersion: nil, headerFields: nil)!
     }
 }

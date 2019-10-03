@@ -17,16 +17,18 @@ public enum ClientError: LocalizedError {
     case invalidModel
     /// Generic error.
     case genericError(NSError)
+    /// Unauthorized
+    case unauthorized
     /// Bad status.
     case badStatus(statusCode: Int)
     /// The Mastodon service returned an error.
     case mastodonError(String)
 
-    public var localizedDescription: String {
-        return errorDescription ?? ""
+    public var errorDescription: String? {
+        return localizedDescription
     }
 
-    public var errorDescription: String? {
+    public var localizedDescription: String {
         switch self {
         case .malformedURL:
             return localizedString("error.mastodonkit.malformedURL")
@@ -36,6 +38,8 @@ public enum ClientError: LocalizedError {
             return localizedString("error.mastodonkit.invalidModel")
         case .genericError(let error):
             return localizedString("error.mastodonkit.genericError", error.localizedDescription)
+        case .unauthorized:
+            return localizedString("error.mastodonkit.unauthorized")
         case .badStatus(let statusCode):
             return localizedString("error.mastodonkit.badStatus", statusCode)
         case .mastodonError(let errorMessage):

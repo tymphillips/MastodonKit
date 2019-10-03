@@ -8,22 +8,49 @@
 
 import Foundation
 
-public struct Client: ClientType {
+public class Client: ClientType {
+
+    private let session: URLSession
+    private var retryQueue: OperationQueue?
+
     public let baseURL: String
-    public var accessToken: String?
+    public weak var delegate: ClientDelegate?
 
-    let session: URLSession
+    public var accessToken: String? {
+        didSet {
+            if accessToken != oldValue { accessTokenDidChange() }
+        }
+    }
 
-    public init(baseURL: String, accessToken: String? = nil, session: URLSession = .shared) {
+    public required init(baseURL: String,
+                         accessToken: String? = nil,
+                         session: URLSession = .shared,
+                         delegate: ClientDelegate? = nil) {
         self.baseURL = baseURL
         self.session = session
         self.accessToken = accessToken
+        self.delegate = delegate
     }
 
     @discardableResult
-    public func run<Model>(_ request: Request<Model>,
-                           resumeImmediatelly: Bool,
-                           completion: @escaping (Result<Model>) -> Void) -> URLSessionDataTask? where Model: Codable {
+    public func run<Model: Codable>(_ request: Request<Model>,
+                                    resumeImmediatelly: Bool,
+                                    completion: @escaping (Result<Model>) -> Void) -> FutureTask? {
+        run(request, existingFuture: nil, resumeImmediatelly: resumeImmediatelly, completion: completion)
+    }
+
+    @discardableResult
+    private func run<Model: Codable>(_ request: Request<Model>,
+                                     existingFuture: FutureTask?,
+                                     resumeImmediatelly: Bool,
+                                     completion: @escaping (Result<Model>) -> Void) -> FutureTask? {
+
+        guard delegate?.isRequestingNewAuthToken != true else {
+            let future = FutureTask()
+            scheduleRequestForRetry(request, future: future, completion: completion)
+            return future
+        }
+
         guard
             let components = URLComponents(baseURL: baseURL, request: request),
             let url = components.url
@@ -33,8 +60,9 @@ public struct Client: ClientType {
         }
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
+        let future = existingFuture ?? FutureTask()
 
-        let task = session.dataTask(with: urlRequest) { data, response, error in
+        let task = session.dataTask(with: urlRequest) { [delegate, weak self] data, response, error in
             if let error = error {
                 completion(.failure(.genericError(error as NSError)))
                 return
@@ -49,6 +77,15 @@ public struct Client: ClientType {
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
             else {
+                guard (response as? HTTPURLResponse)?.statusCode != 401 else {
+                    self.map { delegate?.clientProducedUnauthorizedError($0) }
+                    if let self = self, delegate?.isRequestingNewAuthToken == true {
+                        self.scheduleRequestForRetry(request, future: future, completion: completion)
+                    } else {
+                        completion(.failure(.unauthorized))
+                    }
+                    return
+                }
                 let mastodonError = try? MastodonError.decode(data: data)
                 let error: ClientError = mastodonError.map { .mastodonError($0.description) }
                                         ?? .badStatus(statusCode: (response as? HTTPURLResponse)?.statusCode ?? -1)
@@ -66,11 +103,13 @@ public struct Client: ClientType {
             }
         }
 
+        future.task = task
+
         if resumeImmediatelly {
             task.resume()
         }
 
-        return task
+        return future
     }
 
     public func runAndAggregateAllPages<Model: Codable>(requestProvider: @escaping (Pagination) -> Request<[Model]>,
@@ -101,5 +140,32 @@ public struct Client: ClientType {
         }
 
         fetchPage(pagination: Pagination(next: nil, previous: nil))
+    }
+
+    private func scheduleRequestForRetry<Model>(_ request: Request<Model>,
+                                                future: FutureTask,
+                                                completion: @escaping (Result<Model>) -> Void) {
+
+        let queue = retryQueue ?? {
+            let queue = OperationQueue()
+            queue.qualityOfService = .background
+            queue.maxConcurrentOperationCount = 1
+            return queue
+        }()
+
+        queue.isSuspended = true
+
+        queue.addOperation { [unowned self] in
+            self.run(request, existingFuture: future, resumeImmediatelly: true, completion: completion)
+        }
+
+        retryQueue = queue
+    }
+
+    private func accessTokenDidChange() {
+
+        if accessToken != nil, let queue = retryQueue, queue.operationCount > 0 {
+            queue.isSuspended = false
+        }
     }
 }
