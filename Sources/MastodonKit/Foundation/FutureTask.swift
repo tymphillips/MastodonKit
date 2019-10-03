@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class FutureTask {
+public class FutureTask: NSObject {
 
     public internal(set) var task: URLSessionDataTask? {
         didSet {
