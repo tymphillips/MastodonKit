@@ -45,7 +45,7 @@ public class Client: ClientType {
                                      resumeImmediatelly: Bool,
                                      completion: @escaping (Result<Model>) -> Void) -> FutureTask? {
 
-        guard delegate?.isRequestingNewAuthToken != true else {
+        guard delegate?.isRequestingNewAccessToken != true else {
             let future = FutureTask()
             scheduleRequestForRetry(request, future: future, completion: completion)
             return future
@@ -79,7 +79,7 @@ public class Client: ClientType {
             else {
                 guard (response as? HTTPURLResponse)?.statusCode != 401 else {
                     self.map { delegate?.clientProducedUnauthorizedError($0) }
-                    if let self = self, delegate?.isRequestingNewAuthToken == true {
+                    if let self = self, self.accessToken != nil, delegate?.isRequestingNewAccessToken == true {
                         self.scheduleRequestForRetry(request, future: future, completion: completion)
                     } else {
                         completion(.failure(.unauthorized))
