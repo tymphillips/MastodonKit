@@ -26,17 +26,17 @@ public protocol ClientType {
 
     /// Performs the network request.
     ///
-    /// If a task can be created immediatelly, the returned future will be already populated.
+    /// If a task can be created immediately, the returned future will be already populated.
     ///
     /// - Parameters:
     ///   - request: The request to be performed.
-    ///   - resumeImmediatelly: Whether the `URLSessionDataTask` should be resumed before returning.
+    ///   - resumeImmediately: Whether the `URLSessionDataTask` should be resumed before returning.
     ///   - completion: The completion block to be called when the request is complete.
     ///   - result: The request result.
     /// - Returns: `FutureTask` A future that will be populated with the task that will execute the request.
     @discardableResult
     func run<Model>(_ request: Request<Model>,
-                    resumeImmediatelly: Bool,
+                    resumeImmediately: Bool,
                     completion: @escaping (_ result: Result<Model>) -> Void) -> FutureTask?
 
     /// Performs several network requests and aggregates their results.
@@ -58,6 +58,6 @@ public extension ClientType {
     ///   - completion: The completion block to be called when the request is complete.
     ///   - result: The request result.
     func run<Model>(_ request: Request<Model>, completion: @escaping (_ result: Result<Model>) -> Void) {
-        run(request, resumeImmediatelly: true, completion: completion)
+        run(request, resumeImmediately: true, completion: completion)
     }
 }

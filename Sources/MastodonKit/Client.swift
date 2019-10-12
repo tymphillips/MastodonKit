@@ -34,15 +34,15 @@ public class Client: ClientType {
 
     @discardableResult
     public func run<Model: Codable>(_ request: Request<Model>,
-                                    resumeImmediatelly: Bool,
+                                    resumeImmediately: Bool,
                                     completion: @escaping (Result<Model>) -> Void) -> FutureTask? {
-        run(request, existingFuture: nil, resumeImmediatelly: resumeImmediatelly, completion: completion)
+        run(request, existingFuture: nil, resumeImmediately: resumeImmediately, completion: completion)
     }
 
     @discardableResult
     private func run<Model: Codable>(_ request: Request<Model>,
                                      existingFuture: FutureTask?,
-                                     resumeImmediatelly: Bool,
+                                     resumeImmediately: Bool,
                                      completion: @escaping (Result<Model>) -> Void) -> FutureTask? {
 
         guard delegate?.isRequestingNewAccessToken != true else {
@@ -105,7 +105,7 @@ public class Client: ClientType {
 
         future.task = task
 
-        if resumeImmediatelly {
+        if resumeImmediately {
             task.resume()
         }
 
@@ -156,7 +156,7 @@ public class Client: ClientType {
         queue.isSuspended = true
 
         queue.addOperation { [unowned self] in
-            self.run(request, existingFuture: future, resumeImmediatelly: true, completion: completion)
+            self.run(request, existingFuture: future, resumeImmediately: true, completion: completion)
         }
 
         retryQueue = queue
