@@ -13,8 +13,11 @@ public enum FilterRequests {
     /// Fetches a list of text filters configured by the user.
     ///
     /// - Returns: Request for `[Filter]`.
-    public static func all() -> Request<[Filter]> {
-        return Request<[Filter]>(path: "/api/v1/filters")
+    public static func filters(range: RequestRange = .default) -> Request<[Filter]> {
+        let parameters = range.parameters(limit: between(1, and: 40, default: 20))
+        let method = HTTPMethod.get(.parameters(parameters))
+
+        return Request<[Filter]>(path: "/api/v1/filters", method: method)
     }
 
     /// Create a new filter.
