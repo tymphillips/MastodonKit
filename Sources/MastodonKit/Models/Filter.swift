@@ -14,7 +14,7 @@ public class Filter: Codable {
 
     public let phrase: String
 
-    public let context: Context
+    public let context: [Context]
 
     public let expiresAt: Date?
 
@@ -24,7 +24,7 @@ public class Filter: Codable {
 
     public enum Context: String, Codable {
         case home
-        case notification
+        case notifications
         case `public`
         case thread
     }
