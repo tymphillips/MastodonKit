@@ -44,6 +44,9 @@
 		15CAFCDA22C1923E00444841 /* PollPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCD822C1923E00444841 /* PollPayload.swift */; };
 		15CAFCDB22C1923E00444841 /* PollPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCD822C1923E00444841 /* PollPayload.swift */; };
 		15CAFCDD22C1933A00444841 /* PollPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAFCDC22C1933A00444841 /* PollPayloadTests.swift */; };
+		2077188123B06EB700240DA1 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077188023B06EB700240DA1 /* Conversation.swift */; };
+		2077188223B06F0C00240DA1 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077188023B06EB700240DA1 /* Conversation.swift */; };
+		2077188323B06F0C00240DA1 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2077188023B06EB700240DA1 /* Conversation.swift */; };
 		62864F10213AF68900823C8A /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Client.swift */; };
 		62864F11213AF68900823C8A /* ClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* ClientError.swift */; };
 		62864F12213AF68900823C8A /* ClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* ClientType.swift */; };
@@ -340,6 +343,7 @@
 		15861D2922B8451800C37885 /* PollsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollsTests.swift; sourceTree = "<group>"; };
 		15CAFCD822C1923E00444841 /* PollPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollPayload.swift; sourceTree = "<group>"; };
 		15CAFCDC22C1933A00444841 /* PollPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollPayloadTests.swift; sourceTree = "<group>"; };
+		2077188023B06EB700240DA1 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		62864F50213AF68900823C8A /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		629A4B0E213AF5B100A6386E /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MastodonKit::MastodonKit::Product" /* MastodonKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MastodonKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -633,6 +637,7 @@
 				OBJ_45 /* Status.swift */,
 				OBJ_46 /* Tag.swift */,
 				OBJ_47 /* Visibility.swift */,
+				2077188023B06EB700240DA1 /* Conversation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -981,6 +986,7 @@
 				62864F1E213AF68900823C8A /* AccessScope.swift in Sources */,
 				62864F1F213AF68900823C8A /* Account.swift in Sources */,
 				62864F20213AF68900823C8A /* Application.swift in Sources */,
+				2077188323B06F0C00240DA1 /* Conversation.swift in Sources */,
 				62864F21213AF68900823C8A /* Attachment.swift in Sources */,
 				62864F22213AF68900823C8A /* AttachmentType.swift in Sources */,
 				62864F23213AF68900823C8A /* Card.swift in Sources */,
@@ -1058,6 +1064,7 @@
 				629A4ADC213AF5B100A6386E /* AccessScope.swift in Sources */,
 				629A4ADD213AF5B100A6386E /* Account.swift in Sources */,
 				629A4ADE213AF5B100A6386E /* Application.swift in Sources */,
+				2077188223B06F0C00240DA1 /* Conversation.swift in Sources */,
 				629A4ADF213AF5B100A6386E /* Attachment.swift in Sources */,
 				629A4AE0213AF5B100A6386E /* AttachmentType.swift in Sources */,
 				629A4AE1213AF5B100A6386E /* Card.swift in Sources */,
@@ -1135,6 +1142,7 @@
 				OBJ_159 /* AccessScope.swift in Sources */,
 				OBJ_160 /* Account.swift in Sources */,
 				OBJ_161 /* Application.swift in Sources */,
+				2077188123B06EB700240DA1 /* Conversation.swift in Sources */,
 				OBJ_162 /* Attachment.swift in Sources */,
 				OBJ_163 /* AttachmentType.swift in Sources */,
 				OBJ_164 /* Card.swift in Sources */,
