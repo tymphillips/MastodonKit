@@ -73,7 +73,7 @@ public enum Timelines {
     ///
     /// - Parameter id: The Conversation id.
     /// - Returns: HTTP Status
-    public static func removeConversation(id: String) -> Request<Conversation> {
-        return Request<Conversation>(path: "/api/v1/conversations/\(id)", method: .delete(.empty))
+    public static func removeConversation(id: String) -> Request<Empty> {
+        return Request<Empty>(path: "/api/v1/conversations/\(id)", method: .delete(.empty))
     }
 }
